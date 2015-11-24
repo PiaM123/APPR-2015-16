@@ -12,7 +12,9 @@ V projektu bom analizirala pogostost izžrebanih številk, verjetnost dobitka te
 Podatke za analizo bom pridobila iz naslednjih spletnih strani:
 
 https://en.wikipedia.org/wiki/Eurojackpot
+
 http://www.euro-jackpot.net/archive.asp
+
 http://www.loterija.si/LOTERIJA,,igre,igre_z_zrebanji,eurojackpot,statistika,eurojackpot_statistika.htm
 
 ## Program
