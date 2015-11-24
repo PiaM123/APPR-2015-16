@@ -8,6 +8,7 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2015/16.
 
 Za svojo temo sem izbrala igro na srečo, Eurojackpot. V tej igri sodeluje kar 17 evropskih držav, žrebanje pa poteka enkrat na teden.
 V projektu bom analizirala pogostost izžrebanih številk, verjetnost dobitka ter kolikokrat so posamezne države prejele glavni dobitek.
+
 Podatke za analizo bom pridobila iz naslednjih spletnih strani:
 https://en.wikipedia.org/wiki/Eurojackpot
 http://www.euro-jackpot.net/archive.asp
