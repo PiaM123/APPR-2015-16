@@ -6,27 +6,15 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2015/16.
 
 ## Tematika
 
-Za svojo tematiko sem izbrala analizo 100 najboljših filmov.
-Podatke bom črpala iz spletne strani IMDB:
-http://www.imdb.com/list/ls055592025/
+Za svojo temo sem si izbrala analizo izobraženosti prebivalcev Slovenije. 
 
-Filme bom med seboj primerjala po:
+Podatke bom črpala iz STATISTIČNEGA URADA REPUBLIKE SLOVENIJE (STAT):
+http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=05G2010S&ti=&path=../Database/Dem_soc/05_prebivalstvo/20_soc_ekon_preb/01_05G20_izobrazba/&lang=2
+Tu so podatki na voljo v oblikah html, csv, txt, xls,..
 
-1.letu nastanka
+Zanimale me bodo osnovnošolska, srednješolska ter višješolska oziroma visokošolska izobrazba. Te podatke bom analizirala v letih 2012, 2013 in 2014.
 
-2.oceni
-
-3.zvrsti
-
-4.številu nominacij
-
-5.številu nagrad
-
-6.državah, kjer je bil posnet film
-
-Uporabila bom nominacije oziroma nagrade, ki so jih podelile organizacije/akademije The Oscars, BAFTA in THE Golden Globe Award.
-
-S projektom bom ugotovila, v katerem obdobju so po večini nastali filmi, ki so med najbolj priljubljenimi, katera zvrst filmov je najbol priljubljena, ter v katerih državah so bili posneti najbolj priljubljeni filmi.
+Moj cilj je predstaviti kako se stopnja izobrazbe moških in žensk spreminja glede na regije, katera stopnja izobrazbe je najbolj pogosta, ter v kateri regiji je stopnja izobrazbe največja in v kateri najmanjša. Naredila bom tudi primerjavo med moškimi in ženskami po izobrazbah, torej katerih je več pri posamezni stopnji izobrazbe.
 
 ## Program
 
