@@ -11,11 +11,16 @@ Podatke bom črpala iz spletne strani IMDB:
 http://www.imdb.com/list/ls055592025/
 
 Filme bom med seboj primerjala po:
+
 1.letu nastanka
 2.oceni
+
 3.zvrsti
+
 4.številu nominacij
+
 5.številu nagrad
+
 6.državah, kjer je bil posnet film
 
 Uporabila bom nominacije oziroma nagrade, ki so jih podelile organizacije/akademije The Oscars, BAFTA in THE Golden Globe Award.
