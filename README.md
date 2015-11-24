@@ -10,6 +10,7 @@ Za svojo temo sem izbrala igro na srečo, Eurojackpot. V tej igri sodeluje kar 1
 V projektu bom analizirala pogostost izžrebanih številk, verjetnost dobitka ter kolikokrat so posamezne države prejele glavni dobitek.
 
 Podatke za analizo bom pridobila iz naslednjih spletnih strani:
+
 https://en.wikipedia.org/wiki/Eurojackpot
 http://www.euro-jackpot.net/archive.asp
 http://www.loterija.si/LOTERIJA,,igre,igre_z_zrebanji,eurojackpot,statistika,eurojackpot_statistika.htm
