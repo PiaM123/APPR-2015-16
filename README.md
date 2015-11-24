@@ -5,8 +5,12 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2015/16.
 
 ## Tematika
 
-Izbrali si boste temo, s katero se bo vaš projekt ukvarjal. Tukaj boste
-napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+Za svojo temo sem izbrala igro na srečo, Eurojackpot. V tej gri sodeluje kar 17 evropskih držav. 
+V projektu bom analizirala pogostost izžreabanih številk, verjetnost dobitka ter države, ki so največkrat prejele glavni dobitek.
+Podatke bom pridobila iz naslednjih strani:
+https://en.wikipedia.org/wiki/Eurojackpot
+http://www.loterija.si/LOTERIJA,,igre,igre_z_zrebanji,eurojackpot,statistika,eurojackpot_statistika.htm
+http://www.euro-jackpot.net/archive.asp
 
 ## Program
 
