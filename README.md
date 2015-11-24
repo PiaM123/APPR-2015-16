@@ -10,6 +10,7 @@ Za svojo temo sem si izbrala analizo izobraženosti prebivalcev Slovenije.
 
 Podatke bom črpala iz STATISTIČNEGA URADA REPUBLIKE SLOVENIJE (STAT):
 http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=05G2010S&ti=&path=../Database/Dem_soc/05_prebivalstvo/20_soc_ekon_preb/01_05G20_izobrazba/&lang=2
+
 Tu so podatki na voljo v oblikah html, csv, txt, xls,..
 
 Zanimale me bodo osnovnošolska, srednješolska ter višješolska oziroma visokošolska izobrazba. Te podatke bom analizirala v letih 2012, 2013 in 2014.
