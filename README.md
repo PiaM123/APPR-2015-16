@@ -6,16 +6,21 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2015/16.
 
 ## Tematika
 
-Za svojo temo sem izbrala igro na srečo, Eurojackpot. V tej igri sodeluje kar 17 evropskih držav, žrebanje pa poteka enkrat na teden.
-V projektu bom analizirala pogostost izžrebanih številk, verjetnost dobitka ter kolikokrat so posamezne države prejele glavni dobitek.
+Za svojo tematiko sem izbrala analizo 100 najboljših filmov.
+Podatke bom črpala iz spletne strani IMDB:
+http://www.imdb.com/list/ls055592025/
 
-Podatke za analizo bom pridobila iz naslednjih spletnih strani:
+Filme bom med seboj primerjala po:
+1.letu nastanka
+2.oceni
+3.zvrsti
+4.številu nominacij
+5.številu nagrad
+6.državah, kjer je bil posnet film
 
-https://en.wikipedia.org/wiki/Eurojackpot
+Uporabila bom nominacije oziroma nagrade, ki so jih podelile organizacije/akademije The Oscars, BAFTA in THE Golden Globe Award.
 
-http://www.euro-jackpot.net/archive.asp
-
-http://www.loterija.si/LOTERIJA,,igre,igre_z_zrebanji,eurojackpot,statistika,eurojackpot_statistika.htm
+S projektom bom ugotovila, v katerem obdobju so po večini nastali filmi, ki so med najbolj priljubljenimi, katera zvrst filmov je najbol priljubljena, ter v katerih državah so bili posneti najbolj priljubljeni filmi.
 
 ## Program
 
