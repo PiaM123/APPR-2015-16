@@ -1,17 +1,22 @@
 # 2. faza: Uvoz podatkov
 
+require(dplyr)
+require(rvest)
+require(gsubfn)
+
+
 # Funkcija, ki uvozi podatke iz datoteke druzine.csv
 uvozi.druzine <- function() {
-  return(read.table("podatki/druzine.csv", sep = ";", as.is = TRUE,
+  return(read.csv2("podatki/druzine.csv", sep = ";", as.is = TRUE,
                       row.names = 1,
                       col.names = c("obcina", "en", "dva", "tri", "stiri"),
                       fileEncoding = "Windows-1250"))
 }
 
 # Zapišimo podatke v razpredelnico druzine.
-druzine <- uvozi.druzine()
+#druzine <- uvozi.druzine()
 
-obcine <- uvozi.obcine()
+#obcine <- uvozi.obcine()
 
 # Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
 # potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo
