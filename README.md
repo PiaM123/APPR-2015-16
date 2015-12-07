@@ -6,8 +6,18 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2015/16.
 
 ## Tematika
 
-Izbrali si boste temo, s katero se bo vaš projekt ukvarjal. Tukaj boste
-napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+Za svojo temo sem si izbrala analizo izobraženosti v Sloveniji in v Nemčiji.
+
+Podatke bom črpala iz STATISTIČNEGA URADA REPUBLIKE SLOVENIJE (STAT):
+http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=05G2010S&ti=&path=../Database/Dem_soc/05_prebivalstvo/20_soc_ekon_preb/01_05G20_izobrazba/&lang=2
+Ter iz OECD.Stat
+http://stats.oecd.org/Index.aspx?datasetcode=EDU_ENRL_AGE#
+
+Tu so podatki na voljo v oblikah html, csv, txt, xls,..
+
+Zanimale me bodo osnovnošolska, srednješolska ter višješolska oziroma visokošolska izobrazba. Te podatke bom analizirala v letu 2013.
+
+Moj cilj je ugotoviti kakšna je stopnja izobraženosti v Sloveniji napram Nemčiji, katera stopnja izobrazbe je najbolj pogosta in katera najmanj pogosta. Naredila bom tudi primerjavo med moškimi in ženskami po stopnji izobrazbe, torej katerih je več pri posamezni stopnji izobrazbe.
 
 ## Program
 
