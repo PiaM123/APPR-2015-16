@@ -11,3 +11,9 @@ uvozi.IzobrazbaZenskeNemcija <- function() {
   return(read.csv("podatki/IzobrazbaZenskeNemcija.csv", sep = ",", as.is = TRUE,
                       fileEncoding = "Windows-1250"))
 }
+
+uvozi.IzobrazbaMoskiNemcija <- function() {
+  return(read.csv("podatki/IzobrazbaMoskiNemcija.csv", sep = ",", as.is = TRUE,
+                      fileEncoding = "Windows-1250"))
+}
+
