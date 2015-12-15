@@ -14,25 +14,104 @@ require(gsubfn)
 # fazah.
 
 
-# Uvozimo podatke za izobrazbo moških v Nemčiji.
+# MOŠKI NEMČIJA
 uvozi.IzobrazbaMoskiNemcija <- function() {
-  return(read.table("podatki/IzobrazbaMoskiNemcija.csv", sep = ",", as.is = TRUE,
-                      row.names = NULL,
-                      col.names = 1:23,
-                      fileEncoding = "Windows-1250"))
-}
-
-MoskiNemcija <- uvozi.IzobrazbaMoskiNemcija()
-
-
-# Uvozimo podatke za izobrazbo žensk v Nečiji. 
-uvozi.IzobrazbaZenskeNemcija <- function() {
-  return(read.table("podatki/IzobrazbaZenskeNemcija.csv", sep = ",", as.is = TRUE,
+  return(read.table("podatki/IzobrazbaMoskiNemcija.csv", sep = ",", skip = 1, as.is = TRUE,
                     row.names = NULL,
                     col.names = 1:23,
                     fileEncoding = "Windows-1250"))
 }
 
+MoskiNemcija <- uvozi.IzobrazbaMoskiNemcija()
 
-# Uvozimo podatke za izobrazbo moških v Sloveniji.
+MoskiNemcija <- MoskiNemcija[,-1:-5]
+MoskiNemcija <- MoskiNemcija[,-2:-4]
+MoskiNemcija <- MoskiNemcija[,-3:-5]
+MoskiNemcija <- MoskiNemcija[,-4:-9]
+MoskiNemcija <- MoskiNemcija[,-5:-6]
 
+colnames(MoskiNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Stevilo oseb")
+
+
+
+
+# ŽENSKE NEMČIJA
+uvozi.IzobrazbaZenskeNemcija <- function() {
+  return(read.table("podatki/IzobrazbaZenskeNemcija.csv", sep = ",", skip=1, as.is = TRUE,
+                    row.names = NULL,
+                    col.names = 1:23,
+                    fileEncoding = "Windows-1250"))
+}
+
+ZenskeNemcija <- uvozi.IzobrazbaZenskeNemcija()
+
+ZenskeNemcija <- ZenskeNemcija[,-1:-5]
+ZenskeNemcija <- ZenskeNemcija[,-2:-4]
+ZenskeNemcija <- ZenskeNemcija[,-3:-5]
+ZenskeNemcija <- ZenskeNemcija[,-4:-9]
+ZenskeNemcija <- ZenskeNemcija[,-5:-6]
+
+colnames(ZenskeNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Stevilo oseb")
+
+
+# ŽENSKE SLOVENIJA
+
+library(XML)
+Sys.setlocale("LC_TIME", "C")
+
+stripByPath <- function(x, path) {
+  unlist(xpathApply(x, path,
+                    function(y) gsub("^\\s*(.*?)\\s*$", "\\1",
+                                     gsub("\\[[^]]*\\]", "",
+                                          xmlValue(y)))))
+}
+
+uvozi.IzobrazbaZenskeSlovenija <- function() {
+  url.IzobrazbaZenskeSlovenija <- "podatki/IzobrazbaZenskeSlovenija.htm"
+  doc.IzobrazbaZenskeSlovenija <- htmlTreeParse(url.IzobrazbaZenskeSlovenija, useInternalNodes=TRUE, encoding="Windows-1250")
+  tabele <- getNodeSet(doc.IzobrazbaZenskeSlovenija, "//table")
+  vrstice <- getNodeSet(tabele[[1]], "./tr")
+  seznam <- lapply(vrstice[4:8], stripByPath, "./td")
+  seznam <- lapply(seznam, function(x) x[1:3])
+  matrika <- matrix(unlist(seznam), nrow=length(seznam), byrow=TRUE)
+  colnames(matrika) <- gsub("\n", " ", stripByPath(vrstice[[3]], ".//th"))[2:4]
+  return(
+    data.frame("Stevilo oseb z osnovnosolsko izobrazbo" = matrika[,1], "Stevilo oseb s srednjesolsko izobrazbo" = matrika[,2], "Stevilo oseb z visokosolsko izobrazbo" = matrika[,3], row.names=1:5)
+  )
+}
+
+
+ZenskeSlovenija <- uvozi.IzobrazbaZenskeSlovenija()
+
+rownames(ZenskeSlovenija) = c("20-24 let", "25-29 let", "30-34 let", "35-39 let", "nič")
+
+# MOŠKI SLOVENIJA
+
+library(XML)
+Sys.setlocale("LC_TIME", "C")
+
+stripByPath <- function(x, path) {
+  unlist(xpathApply(x, path,
+                    function(y) gsub("^\\s*(.*?)\\s*$", "\\1",
+                                     gsub("\\[[^]]*\\]", "",
+                                          xmlValue(y)))))
+}
+
+uvozi.IzobrazbaMoskiSlovenija <- function() {
+  url.IzobrazbaMoskiSlovenija <- "podatki/IzobrazbaMoskiSlovenija.htm"
+  doc.IzobrazbaMoskiSlovenija <- htmlTreeParse(url.IzobrazbaMoskiSlovenija, useInternalNodes=TRUE, encoding="Windows-1250")
+  tabele <- getNodeSet(doc.IzobrazbaMoskiSlovenija, "//table")
+  vrstice <- getNodeSet(tabele[[1]], "./tr")
+  seznam <- lapply(vrstice[4:8], stripByPath, "./td")
+  seznam <- lapply(seznam, function(x) x[1:3])
+  matrika <- matrix(unlist(seznam), nrow=length(seznam), byrow=TRUE)
+  colnames(matrika) <- gsub("\n", " ", stripByPath(vrstice[[3]], ".//th"))[2:4]
+  return(
+    data.frame("Stevilo oseb z osnovnosolsko izobrazbo" = matrika[,1], "Stevilo oseb s srednjesolsko izobrazbo" = matrika[,2], "Stevilo oseb z visokosolsko izobrazbo" = matrika[,3], row.names=1:5)
+  )
+}
+
+
+MoskiSlovenija <- uvozi.IzobrazbaMoskiSlovenija()
+
+rownames(MoskiSlovenija) = c("20-24 let", "25-29 let", "30-34 let", "35-39 let", "nič")
