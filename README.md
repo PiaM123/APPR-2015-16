@@ -9,9 +9,7 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2015/16.
 Za svojo temo sem si izbrala analizo izobraženosti v Sloveniji in v Nemčiji.
 
 Podatke bom črpala iz STATISTIČNEGA URADA REPUBLIKE SLOVENIJE (STAT):
-http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=05G2010S&ti=&path=../Database/Dem_soc/05_prebivalstvo/20_soc_ekon_preb/01_05G20_izobrazba/&lang=2
-Ter iz OECD.Stat
-http://stats.oecd.org/Index.aspx?datasetcode=EDU_ENRL_AGE#
+http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=05G2010S&ti=&path=../Database/Dem_soc/05_prebivalstvo/20_soc_ekon_preb/01_05G20_izobrazba/&lang=2, ter iz OECD.Stat: http://stats.oecd.org/Index.aspx?datasetcode=EDU_ENRL_AGE#
 
 Tu so podatki na voljo v oblikah html, csv, txt, xls,..
 
