@@ -18,8 +18,10 @@ uvozi.druzine <- function() {
 
 #obcine <- uvozi.obcine()
 
-# Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
-# potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo
-# datoteko, tukaj pa bi klicali tiste, ki jih potrebujemo v
-# 2. fazi. Seveda bi morali ustrezno datoteko uvoziti v prihodnjih
-# fazah.
+stran <- file("podatki/05G2010S.htm") %>% read_html(encoding = "Windows-1250")
+tabela <- stran %>% html_nodes(xpath ="//table[1]") %>% .[[1]] %>% html_table(fill=TRUE)
+
+SLO.2011 <- data.frame(apply(tabela[4:14, 5:14], 2, as.numeric))
+row.names(SLO.2011) <- tabela[4:14, 1]
+names(SLO.2011) <- tabela[2, 5:14]
+Encoding(names(SLO.2011)) <- "UTF-8"
