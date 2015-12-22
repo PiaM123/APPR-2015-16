@@ -77,12 +77,11 @@ uvozi.IzobrazbaZenskeSlovenija <- function() {
 
 ZenskeSlovenija <- uvozi.IzobrazbaZenskeSlovenija()
 
-rownames(ZenskeSlovenija) = c("20-24 let", "25-29 let", "30-34 let", "35-39 let", "nič")
-
-ZenskeSlovenija <- ZenskeSlovenija[1:4,]
-
 colnames(ZenskeSlovenija) = c("Stevilo zensk z osnovnosolsko izobrazbo", "Stevilo zensk s srednjesolsko izobrazbo", "Stevilo zensk z visokosolsko izobrazbo")
 
+ZenskeSlovenija <- ZenskeSlovenija[-nrow(ZenskeSlovenija),]
+ZenskeSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
+                             ZenskeSlovenija)
 # MOŠKI SLOVENIJA
 
 Sys.setlocale("LC_TIME", "C")
@@ -111,16 +110,24 @@ uvozi.IzobrazbaMoskiSlovenija <- function() {
 
 MoskiSlovenija <- uvozi.IzobrazbaMoskiSlovenija()
 
-rownames(MoskiSlovenija) = c("20-24 let", "25-29 let", "30-34 let", "35-39 let", "ni")
-
-MoskiSlovenija <- MoskiSlovenija[1:4,]
-
 colnames(MoskiSlovenija) = c("Stevilo moskih z osnovnosolsko izobrazbo", "stevilo moskih s srednjesolsko izobrazbo", "Stevilo moskih z visokosolsko izobrazbo")
 
 MoskiSlovenija <- MoskiSlovenija[-nrow(MoskiSlovenija),]
 MoskiSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
                              MoskiSlovenija)
 
+#Graf za izobrazbo moških v Sloveniji
+
+grafMS <- ggplot(MoskiSlovenija, aes(x = starost, y = Stevilo.moskih.z.visokosolsko.izobrazbo,)) +
+  geom_bar(stat = "identity") + theme_minimal() + aes(color=starost) +
+  labs(title="Število moških z visokošolsko izobrazbo v Sloveniji", y="Število")
+print(grafMS)
 
 
+#Graf za izobrazbo žensk v Sloveniji
+
+grafZS <- ggplot(ZenskeSlovenija, aes(x = starost, y = Stevilo.zensk.z.visokosolsko.izobrazbo,)) +
+  geom_bar(stat = "identity") + theme_minimal() + aes(color=starost) + 
+  labs(title="Število žensk v Sloveniji z visokošolsko izobrazbo", y="Število")
+print(grafZS)
 
