@@ -117,7 +117,9 @@ MoskiSlovenija <- MoskiSlovenija[1:4,]
 
 colnames(MoskiSlovenija) = c("Stevilo moskih z osnovnosolsko izobrazbo", "Stevilo moskih s srednjesolsko izobrazbo", "Stevilo moskih z visokosolsko izobrazbo")
 
-#Graf za izobrazbo moških v Sloveniji
+MoskiSlovenija <- MoskiSlovenija[-nrow(MoskiSlovenija),]
+MoskiSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
+                             MoskiSlovenija)
 
 
 
