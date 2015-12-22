@@ -128,6 +128,6 @@ print(grafMS)
 
 grafZS <- ggplot(ZenskeSlovenija, aes(x = starost, y = Stevilo.zensk.z.visokosolsko.izobrazbo,)) +
   geom_bar(stat = "identity") + theme_minimal() + aes(color=starost) + 
-  labs(title="Število žensk v Sloveniji z visokošolsko izobrazbo", y="Število")
+  labs(title="Število žensk v Sloveniji z visokošolsko izobrazbo", y="Število") 
 print(grafZS)
 
