@@ -115,3 +115,10 @@ uvozi.IzobrazbaMoskiSlovenija <- function() {
 MoskiSlovenija <- uvozi.IzobrazbaMoskiSlovenija()
 
 rownames(MoskiSlovenija) = c("20-24 let", "25-29 let", "30-34 let", "35-39 let", "nič")
+
+
+#Graf za izobrazbo moških v Sloveniji
+library(ggplot2)
+library(dplyr)
+
+
