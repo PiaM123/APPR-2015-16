@@ -115,7 +115,7 @@ rownames(MoskiSlovenija) = c("20-24 let", "25-29 let", "30-34 let", "35-39 let",
 
 MoskiSlovenija <- MoskiSlovenija[1:4,]
 
-colnames(MoskiSlovenija) = c("Stevilo moskih z osnovnosolsko izobrazbo", "Stevilo moskih s srednjesolsko izobrazbo", "Stevilo moskih z visokosolsko izobrazbo")
+colnames(MoskiSlovenija) = c("Stevilo moskih z osnovnosolsko izobrazbo", "stevilo moskih s srednjesolsko izobrazbo", "Stevilo moskih z visokosolsko izobrazbo")
 
 MoskiSlovenija <- MoskiSlovenija[-nrow(MoskiSlovenija),]
 MoskiSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
