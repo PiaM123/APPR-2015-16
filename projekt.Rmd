@@ -52,7 +52,10 @@ V vseh tabelah so podatki točne številke oseb z določeno stopnjo izobrazbe.
 V prvi tabeli so podatki za izobrazbo moških v Sloveniji. Ta tabela ima 4 vrstice in 3 stolpce. 
 Druga tabela prikazuje podatke za moške v Nemčiji in je sestavljena iz 12 vrstic in 4 stolpcev.
 Tretja tabela prikazuje podatke za ženske v Sloveniji in je enako velika kot tabela za moške v Sloveniji.
-Zadnja pa je za izobrazbo žensk v Nemčiji in je enako velika kot tabela za izobrazbo moških v Nemčiji.
+Zadnja pa je za izobrazbo žensk v Nemčiji in je enako velika kot tistaa za izobrazbo moških v Nemčiji.
+
+
+
 Slika \ref{fig:histogram} prikazuje porazdelitev števila naselij v občinah.
 
 ```{r histogram, echo=FALSE, fig.align='center', fig.cap='Histogram števila naselij v občinah'}
