@@ -52,7 +52,25 @@ V vseh tabelah so podatki točne številke oseb z določeno stopnjo izobrazbe.
 V prvi tabeli so podatki za izobrazbo moških v Sloveniji. Ta tabela ima 4 vrstice in 3 stolpce. 
 Druga tabela prikazuje podatke za moške v Nemčiji in je sestavljena iz 12 vrstic in 4 stolpcev.
 Tretja tabela prikazuje podatke za ženske v Sloveniji in je enako velika kot tabela za moške v Sloveniji.
-Zadnja pa je za izobrazbo žensk v Nemčiji in je enako velika kot tista za izobrazbo moških v Nemčiji.
+Zadnja pa je za izobrazbo žensk v Nemčiji
+in je enako velika kot tista za izobrazbo moških v Nemčiji.
 
+```
+grafMS <- ggplot(MoskiSlovenija, aes(x = starost, y = Stevilo.moskih.z.visokosolsko.izobrazbo,)) +
+  geom_bar(stat = "identity") + theme_minimal() + aes(color=starost) +
+  labs(title="Število moških z visokošolsko izobrazbo v Sloveniji", y="Število")
+print(grafMS)
+```
 
+Graf prikazuje število moških v Sloveniji, ki imajo visokošolsko izobrazbo. Razdeljeni so v starostne skupine od 20 do 24 let, od 25 do 29, od 30 do 34 ter od 35 do 39 let.
+V grafu lahko vidimo, da je med tistimi, ki imajo visokošolsko izobrazbo največ tistih, ki so stari med 30 in 34 let in česar lahko sklepamo, da v času, ko bi se morale osebe starejše od 35 let vpisati na fakulteto še ni bilo tako množičnega vpisa in jih je veliko ostalo z srednješolsko ali nižjo izobrazbo.
 
+```
+grafZS <- ggplot(ZenskeSlovenija, aes(x = starost, y = Stevilo.zensk.z.visokosolsko.izobrazbo,)) +
+  geom_bar(stat = "identity") + theme_minimal() + aes(color=starost) + 
+  labs(title="Število žensk v Sloveniji z visokošolsko izobrazbo", y="Število") 
+print(grafZS)
+```
+
+Ta graf pa prikazuje število žensk v Sloveniji, ki imajo visokošolsko izobrazbo. Prav tako so razdeljene v starostne skupine.
+Vidimo, da tudi pri ženskah prevladuje število tistih, ki štejejo od 30 do 34 let. Je pa žensk z visokošolsko izobrazbo veliko več kot moških.
