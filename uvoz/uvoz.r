@@ -1,10 +1,5 @@
 # 2. faza: Uvoz podatkov
 
-require(dplyr)
-require(rvest)
-require(gsubfn)
-
-
 # Funkcija, ki uvozi podatke iz datoteke druzine.csv
 # Zapišimo podatke v razpredelnico druzine.
 # Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
@@ -56,7 +51,6 @@ colnames(ZenskeNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Stevilo ose
 
 # ŽENSKE SLOVENIJA
 
-library(XML)
 Sys.setlocale("LC_TIME", "C")
 
 stripByPath <- function(x, path) {
@@ -91,7 +85,6 @@ colnames(ZenskeSlovenija) = c("Stevilo zensk z osnovnosolsko izobrazbo", "Stevil
 
 # MOŠKI SLOVENIJA
 
-library(XML)
 Sys.setlocale("LC_TIME", "C")
 
 stripByPath <- function(x, path) {
@@ -118,15 +111,14 @@ uvozi.IzobrazbaMoskiSlovenija <- function() {
 
 MoskiSlovenija <- uvozi.IzobrazbaMoskiSlovenija()
 
-rownames(MoskiSlovenija) = c("20-24 let", "25-29 let", "30-34 let", "35-39 let", "nič")
+rownames(MoskiSlovenija) = c("20-24 let", "25-29 let", "30-34 let", "35-39 let", "ni")
 
 MoskiSlovenija <- MoskiSlovenija[1:4,]
 
 colnames(MoskiSlovenija) = c("Stevilo moskih z osnovnosolsko izobrazbo", "Stevilo moskih s srednjesolsko izobrazbo", "Stevilo moskih z visokosolsko izobrazbo")
 
-
 #Graf za izobrazbo moških v Sloveniji
-library(ggplot2)
-library(dplyr)
+
+
 
 

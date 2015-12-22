@@ -25,9 +25,9 @@ Zanimale me bodo osebe stare 20 do 24 let, 25 do 29 let, 30 do 34 let in 35 do 3
 
 Podatke sem pridobila na spletu:
 
-http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=05G2010S&ti=&path=../Database/Dem_soc/05_prebivalstvo/20_soc_ekon_preb/01_05G20_izobrazba/&lang=2
+<http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=05G2010S&ti=&path=../Database/Dem_soc/05_prebivalstvo/20_soc_ekon_preb/01_05G20_izobrazba/&lang=2>
 
-http://stats.oecd.org/Index.aspx?datasetcode=EDU_ENRL_AGE#
+<http://stats.oecd.org/Index.aspx?datasetcode=EDU_ENRL_AGE#>
 
 
 
@@ -54,9 +54,6 @@ Druga tabela prikazuje podatke za moške v Nemčiji in je sestavljena iz 12 vrst
 Tretja tabela prikazuje podatke za ženske v Sloveniji in je enako velika kot tabela za moške v Sloveniji.
 Zadnja pa je za izobrazbo žensk v Nemčiji in je enako velika kot tistaa za izobrazbo moških v Nemčiji.
 
-
-
-Slika \ref{fig:histogram} prikazuje porazdelitev števila naselij v občinah.
 
 ```{r histogram, echo=FALSE, fig.align='center', fig.cap='Histogram števila naselij v občinah'}
 hist(obcine[,4], main = "Pogostost števila naselij",
