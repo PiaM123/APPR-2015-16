@@ -85,6 +85,10 @@ ZenskeSlovenija <- uvozi.IzobrazbaZenskeSlovenija()
 
 rownames(ZenskeSlovenija) = c("20-24 let", "25-29 let", "30-34 let", "35-39 let", "nič")
 
+ZenskeSlovenija <- ZenskeSlovenija[1:4,]
+
+colnames(ZenskeSlovenija) = c("Stevilo zensk z osnovnosolsko izobrazbo", "Stevilo zensk s srednjesolsko izobrazbo", "Stevilo zensk z visokosolsko izobrazbo")
+
 # MOŠKI SLOVENIJA
 
 library(XML)
@@ -115,6 +119,10 @@ uvozi.IzobrazbaMoskiSlovenija <- function() {
 MoskiSlovenija <- uvozi.IzobrazbaMoskiSlovenija()
 
 rownames(MoskiSlovenija) = c("20-24 let", "25-29 let", "30-34 let", "35-39 let", "nič")
+
+MoskiSlovenija <- MoskiSlovenija[1:4,]
+
+colnames(MoskiSlovenija) = c("Stevilo moskih z osnovnosolsko izobrazbo", "Stevilo moskih s srednjesolsko izobrazbo", "Stevilo moskih z visokosolsko izobrazbo")
 
 
 #Graf za izobrazbo moških v Sloveniji
