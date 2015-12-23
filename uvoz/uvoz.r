@@ -121,11 +121,11 @@ MoskiSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", 
 grafMS <- ggplot(MoskiSlovenija, aes(x = starost, y = Stevilo.moskih.z.visokosolsko.izobrazbo,)) +
   geom_bar(stat = "identity") + theme_minimal() + aes(fill=starost) +
   labs(title="Število moških z visokošolsko izobrazbo v Sloveniji", y="Število")
-
+print(grafMS)
 
 #Graf za izobrazbo žensk v Sloveniji.
 
 grafZS <- ggplot(ZenskeSlovenija, aes(x = starost, y = Stevilo.zensk.z.visokosolsko.izobrazbo,)) +
   geom_bar(stat = "identity") + theme_minimal() + aes(fill=starost) + 
   labs(title="Število žensk v Sloveniji z visokošolsko izobrazbo", y="Število")
-
+print(grafZS)
