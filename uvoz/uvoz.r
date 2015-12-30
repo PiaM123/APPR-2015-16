@@ -68,18 +68,16 @@ uvozi.IzobrazbaZenskeSlovenija <- function() {
   seznam <- lapply(vrstice[4:8], stripByPath, "./td")
   seznam <- lapply(seznam, function(x) x[1:3])
   matrika <- matrix(unlist(seznam), nrow=length(seznam), byrow=TRUE)
+  matrika <- apply(matrika[-nrow(matrika),], 2, as.numeric)
   colnames(matrika) <- gsub("\n", " ", stripByPath(vrstice[[3]], ".//th"))[2:4]
   return(
-    data.frame("Stevilo oseb z osnovnosolsko izobrazbo" = matrika[,1], "Stevilo oseb s srednjesolsko izobrazbo" = matrika[,2], "Stevilo oseb z visokosolsko izobrazbo" = matrika[,3], row.names=1:5)
+    data.frame("Stevilo oseb z osnovnosolsko izobrazbo" = matrika[,1], "Stevilo oseb s srednjesolsko izobrazbo" = matrika[,2], "Stevilo oseb z visokosolsko izobrazbo" = matrika[,3], row.names=1:4)
   )
-}
-
 
 ZenskeSlovenija <- uvozi.IzobrazbaZenskeSlovenija()
 
 colnames(ZenskeSlovenija) = c("Stevilo zensk z osnovnosolsko izobrazbo", "Stevilo zensk s srednjesolsko izobrazbo", "Stevilo zensk z visokosolsko izobrazbo")
 
-ZenskeSlovenija <- ZenskeSlovenija[-nrow(ZenskeSlovenija),]
 ZenskeSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
                              ZenskeSlovenija)
 # MOŠKI SLOVENIJA
@@ -101,31 +99,17 @@ uvozi.IzobrazbaMoskiSlovenija <- function() {
   seznam <- lapply(vrstice[4:8], stripByPath, "./td")
   seznam <- lapply(seznam, function(x) x[1:3])
   matrika <- matrix(unlist(seznam), nrow=length(seznam), byrow=TRUE)
+  matrika <- apply(matrika[-nrow(matrika),], 2, as.numeric)
   colnames(matrika) <- gsub("\n", " ", stripByPath(vrstice[[3]], ".//th"))[2:4]
   return(
-    data.frame("Stevilo oseb z osnovnosolsko izobrazbo" = matrika[,1], "Stevilo oseb s srednjesolsko izobrazbo" = matrika[,2], "Stevilo oseb z visokosolsko izobrazbo" = matrika[,3], row.names=1:5)
+    data.frame("Stevilo oseb z osnovnosolsko izobrazbo" = matrika[,1], "Stevilo oseb s srednjesolsko izobrazbo" = matrika[,2], "Stevilo oseb z visokosolsko izobrazbo" = matrika[,3], row.names=1:4)
   )
-}
 
 
 MoskiSlovenija <- uvozi.IzobrazbaMoskiSlovenija()
 
 colnames(MoskiSlovenija) = c("Stevilo moskih z osnovnosolsko izobrazbo", "stevilo moskih s srednjesolsko izobrazbo", "Stevilo moskih z visokosolsko izobrazbo")
 
-MoskiSlovenija <- MoskiSlovenija[-nrow(MoskiSlovenija),]
 MoskiSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
                              MoskiSlovenija)
 
-#Graf za izobrazbo moških v Sloveniji
-
-grafMS <- ggplot(MoskiSlovenija, aes(x = starost, y = Stevilo.moskih.z.visokosolsko.izobrazbo,)) +
-  geom_bar(stat = "identity") + theme_minimal() + aes(fill=starost) +
-  labs(title="Število moških z visokošolsko izobrazbo v Sloveniji", y="Število")
-print(grafMS)
-
-#Graf za izobrazbo žensk v Sloveniji.
-
-grafZS <- ggplot(ZenskeSlovenija, aes(x = starost, y = Stevilo.zensk.z.visokosolsko.izobrazbo,)) +
-  geom_bar(stat = "identity") + theme_minimal() + aes(fill=starost) + 
-  labs(title="Število žensk v Sloveniji z visokošolsko izobrazbo", y="Število")
-print(grafZS)
