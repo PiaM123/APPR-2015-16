@@ -51,6 +51,7 @@ colnames(ZenskeNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Stevilo ose
 
 # ŽENSKE SLOVENIJA
 
+library(XML)
 Sys.setlocale("LC_TIME", "C")
 
 stripByPath <- function(x, path) {
@@ -73,6 +74,7 @@ uvozi.IzobrazbaZenskeSlovenija <- function() {
   return(
     data.frame("Stevilo oseb z osnovnosolsko izobrazbo" = matrika[,1], "Stevilo oseb s srednjesolsko izobrazbo" = matrika[,2], "Stevilo oseb z visokosolsko izobrazbo" = matrika[,3], row.names=1:4)
   )
+}
 
 ZenskeSlovenija <- uvozi.IzobrazbaZenskeSlovenija()
 
@@ -82,6 +84,7 @@ ZenskeSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let",
                              ZenskeSlovenija)
 # MOŠKI SLOVENIJA
 
+library(XML)
 Sys.setlocale("LC_TIME", "C")
 
 stripByPath <- function(x, path) {
@@ -92,7 +95,7 @@ stripByPath <- function(x, path) {
 }
 
 uvozi.IzobrazbaMoskiSlovenija <- function() {
-  url.IzobrazbaMoskiSlovenija <- "podatki/IzobrazbaMoskiSlovenija.htm"
+  url.IzobrazbaMoskiSlovenija <- "podatki/IzobrazbaZenskeSlovenija.htm"
   doc.IzobrazbaMoskiSlovenija <- htmlTreeParse(url.IzobrazbaMoskiSlovenija, useInternalNodes=TRUE, encoding="Windows-1250")
   tabele <- getNodeSet(doc.IzobrazbaMoskiSlovenija, "//table")
   vrstice <- getNodeSet(tabele[[1]], "./tr")
@@ -104,12 +107,25 @@ uvozi.IzobrazbaMoskiSlovenija <- function() {
   return(
     data.frame("Stevilo oseb z osnovnosolsko izobrazbo" = matrika[,1], "Stevilo oseb s srednjesolsko izobrazbo" = matrika[,2], "Stevilo oseb z visokosolsko izobrazbo" = matrika[,3], row.names=1:4)
   )
-
-
-MoskiSlovenija <- uvozi.IzobrazbaMoskiSlovenija()
-
-colnames(MoskiSlovenija) = c("Stevilo moskih z osnovnosolsko izobrazbo", "stevilo moskih s srednjesolsko izobrazbo", "Stevilo moskih z visokosolsko izobrazbo")
-
-MoskiSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
-                             MoskiSlovenija)
-
+}
+  MoskiSlovenija <- uvozi.IzobrazbaMoskiSlovenija()
+  
+  colnames(MoskiSlovenija) = c("Stevilo moskih z osnovnosolsko izobrazbo", "Stevilo moskih s srednjesolsko izobrazbo", "Stevilo moskih z visokosolsko izobrazbo")
+  
+  ZenskeSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
+                                ZenskeSlovenija)
+  
+  #Graf za izobrazbo moških v Sloveniji
+  
+  grafMS <- ggplot2(MoskiSlovenija, aes(x = starost, y = Stevilo.moskih.z.visokosolsko.izobrazbo,)) +
+    geom_bar(stat = "identity") + theme_minimal() + aes(fill=starost) +
+    labs(title="Število moških z visokošolsko izobrazbo v Sloveniji", y="Število")
+  print(grafMS)
+  
+  #Graf za izobrazbo žensk v Sloveniji.
+  
+  grafZS <- ggplot2(ZenskeSlovenija, aes(x = starost, y = Stevilo.zensk.z.visokosolsko.izobrazbo,)) +
+    geom_bar(stat = "identity") + theme_minimal() + aes(fill=starost) + 
+    labs(title="Število žensk v Sloveniji z visokošolsko izobrazbo", y="Število")
+  print(grafZS)
+  
