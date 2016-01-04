@@ -9,7 +9,7 @@
 # fazah.
 
 
-# MOŠKI NEMČIJA
+# MOŠKI NEMČIJA IZOBRAZBA
 uvozi.IzobrazbaMoskiNemcija <- function() {
   return(read.table("podatki/IzobrazbaMoskiNemcija.csv", sep = ",", skip = 1, as.is = TRUE,
                     row.names = NULL,
@@ -30,7 +30,7 @@ colnames(MoskiNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Stevilo oseb
 
 
 
-# ŽENSKE NEMČIJA
+# ŽENSKE NEMČIJA IZOBRAZBA
 uvozi.IzobrazbaZenskeNemcija <- function() {
   return(read.table("podatki/IzobrazbaZenskeNemcija.csv", sep = ",", skip=1, as.is = TRUE,
                     row.names = NULL,
@@ -49,7 +49,7 @@ ZenskeNemcija <- ZenskeNemcija[,-5:-6]
 colnames(ZenskeNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Stevilo oseb")
 
 
-# ŽENSKE SLOVENIJA
+# ŽENSKE SLOVENIJA IZOBRAZBA
 
 library(XML)
 Sys.setlocale("LC_TIME", "C")
@@ -82,7 +82,7 @@ colnames(ZenskeSlovenija) = c("Stevilo zensk z osnovnosolsko izobrazbo", "Stevil
 
 ZenskeSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
                              ZenskeSlovenija)
-# MOŠKI SLOVENIJA
+# MOŠKI SLOVENIJA IZOBRAZBA
 
 library(XML)
 Sys.setlocale("LC_TIME", "C")
@@ -95,7 +95,7 @@ stripByPath <- function(x, path) {
 }
 
 uvozi.IzobrazbaMoskiSlovenija <- function() {
-  url.IzobrazbaMoskiSlovenija <- "podatki/IzobrazbaZenskeSlovenija.htm"
+  url.IzobrazbaMoskiSlovenija <- "podatki/IzobrazbaMoskiSlovenija.htm"
   doc.IzobrazbaMoskiSlovenija <- htmlTreeParse(url.IzobrazbaMoskiSlovenija, useInternalNodes=TRUE, encoding="Windows-1250")
   tabele <- getNodeSet(doc.IzobrazbaMoskiSlovenija, "//table")
   vrstice <- getNodeSet(tabele[[1]], "./tr")
@@ -112,21 +112,31 @@ uvozi.IzobrazbaMoskiSlovenija <- function() {
   
   colnames(MoskiSlovenija) = c("Stevilo moskih z osnovnosolsko izobrazbo", "Stevilo moskih s srednjesolsko izobrazbo", "Stevilo moskih z visokosolsko izobrazbo")
   
-  ZenskeSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
-                                ZenskeSlovenija)
+  MoskiSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
+                                MoskiSlovenija)
   
-  #Graf za izobrazbo moških v Sloveniji
+  #AKTIVNO PREBIVALSTVO SLOVENIJA
   
-  grafMS <- ggplot(MoskiSlovenija, aes(x = starost, y = Stevilo.moskih.z.visokosolsko.izobrazbo,)) +
-    geom_bar(stat = "identity") + theme_minimal() + aes(fill=starost) +
-    labs(title="Število moških z visokošolsko izobrazbo v Sloveniji", y="Število")
-  print(grafMS)
+  uvozi.AktivnoPrebivalstvoSlovenija <- function() {
+    return(read.table("podatki/AktivnoPrebivalstvoSlovenija.csv", sep = ";", skip = 4, as.is = TRUE,
+                      row.names = NULL,
+                      col.names = 1:6,
+                      fileEncoding = "Windows-1250"))
+  }
   
-  #Graf za izobrazbo žensk v Sloveniji.
+  AktivnostSlovenija <- uvozi.AktivnoPrebivalstvoSlovenija()
   
-  grafZS <- ggplot(ZenskeSlovenija, aes(x = starost, y = Stevilo.zensk.z.visokosolsko.izobrazbo,)) +
-    geom_bar(stat = "identity") + theme_minimal() + aes(fill=starost) + 
-    labs(title="Število žensk v Sloveniji z visokošolsko izobrazbo", y="Število")
-  print(grafZS)
+  #POVREČNE PLAČE SLOVENIJA
+  
+  uvozi.PovprecnePlaceSlovenija <- function() {
+    return(read.table("podatki/PovprecnePlaceSlovenija.csv", sep = ";", skip = 4, as.is = TRUE,
+                      row.names = NULL,
+                      col.names = 1:6,
+                      fileEncoding = "Windows-1250"))
+  }
+  
+  PlaceSlovenija <- uvozi.PovprecnePlaceSlovenija()
+  
+
   
   
