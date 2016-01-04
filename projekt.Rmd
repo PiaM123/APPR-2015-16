@@ -42,7 +42,7 @@ Podatke sem pridobila na spletu:
 source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
 
-Uvozila sem podatke o izobrazbi žensk in moških v Sloveniji v obliki HTML iz spletne strani statističnega urada, ter podatke o izobrazbi žensk in moških v Nemčiji v obliki CSV iz spletne strani OECD.
+Uvozila sem podatke o izobrazbi žensk in moških v Sloveniji v obliki HTML in CSV iz spletne strani statističnega urada, ter podatke o izobrazbi žensk in moških v Nemčiji v obliki CSV iz spletne strani OECD.
 
 ```{r razpredelnice}
 kable(head(MoskiSlovenija))

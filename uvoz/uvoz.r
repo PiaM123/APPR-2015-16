@@ -164,9 +164,9 @@ uvozi.IzobrazbaMoskiSlovenija <- function() {
 }
   MoskiSlovenija <- uvozi.IzobrazbaMoskiSlovenija()
   
-  colnames(MoskiSlovenija) = c("Stevilo moskih z osnovnosolsko izobrazbo", "Stevilo moskih s srednjesolsko izobrazbo", "Stevilo moskih z visokosolsko izobrazbo")
+  colnames(MoskiSlovenija) = c("Število moskih z osnovnosolsko izobrazbo", "Stevilo moskih s srednjesolsko izobrazbo", "Stevilo moskih z visokosolsko izobrazbo")
   
-  MoskiSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39"),
+  MoskiSlovenija <- data.frame(Starost = c("20-24 let", "25-29 let", "30-34 let", "35-39"),
                                 MoskiSlovenija)
 
   
@@ -177,6 +177,7 @@ uvozi.IzobrazbaMoskiSlovenija <- function() {
                       row.names = NULL,
                       fileEncoding = "Windows-1250"))
   }
+  
   
   PlaceAktivnostSlovenija <- uvozi.PlaceAktivnostSlovenija()
   
