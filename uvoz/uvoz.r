@@ -27,6 +27,32 @@ MoskiNemcija <- MoskiNemcija[,-5:-6]
 
 colnames(MoskiNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Stevilo oseb")
 
+MoskiNemcija[1,2] <- "Osnovnosolka izobrazba"
+MoskiNemcija[3,2] <- "Osnovnosolka izobrazba"
+MoskiNemcija[7,2] <- "Osnovnosolka izobrazba"
+MoskiNemcija[12,2] <- "Osnovnosolka izobrazba"
+MoskiNemcija[2,2] <- "Srednjesolska izobrazba"
+MoskiNemcija[4,2] <- "Srednjesolska izobrazba"
+MoskiNemcija[8,2] <- "Srednjesolska izobrazba"
+MoskiNemcija[10,2] <- "Srednjesolska izobrazba"
+MoskiNemcija[5,2] <- "Visokosolska izobrazba"
+MoskiNemcija[6,2] <- "Visokosolska izobrazba"
+MoskiNemcija[9,2] <- "Visokosolska izobrazba"
+MoskiNemcija[11,2] <- "Visokosolska izobrazba"
+
+MoskiNemcija[1,1] <- "20-24 let"
+MoskiNemcija[2,1] <- "20-24 let"
+MoskiNemcija[6,1] <- "20-24 let"
+MoskiNemcija[3,1] <- "30-34 let"
+MoskiNemcija[10,1] <- "30-34 let"
+MoskiNemcija[11,1] <- "30-34 let"
+MoskiNemcija[4,1] <- "35-39 let"
+MoskiNemcija[5,1] <- "35-39 let"
+MoskiNemcija[12,1] <- "35-39 let"
+MoskiNemcija[7,1] <- "25-29 let"
+MoskiNemcija[8,1] <- "25-29 let"
+MoskiNemcija[9,1] <- "25-29 let"
+
 
 
 
@@ -47,6 +73,33 @@ ZenskeNemcija <- ZenskeNemcija[,-4:-9]
 ZenskeNemcija <- ZenskeNemcija[,-5:-6]
 
 colnames(ZenskeNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Stevilo oseb")
+
+
+ZenskeNemcija[1,2] <- "Osnovnosolka izobrazba"
+ZenskeNemcija[4,2] <- "Osnovnosolka izobrazba"
+ZenskeNemcija[8,2] <- "Osnovnosolka izobrazba"
+ZenskeNemcija[11,2] <- "Osnovnosolka izobrazba"
+ZenskeNemcija[2,2] <- "Srednjesolska izobrazba"
+ZenskeNemcija[3,2] <- "Srednjesolska izobrazba"
+ZenskeNemcija[5,2] <- "Srednjesolska izobrazba"
+ZenskeNemcija[9,2] <- "Srednjesolska izobrazba"
+ZenskeNemcija[6,2] <- "Visokosolska izobrazba"
+ZenskeNemcija[7,2] <- "Srednjesolska izobrazba"
+ZenskeNemcija[10,2] <- "Visokosolska izobrazba"
+ZenskeNemcija[12,2] <- "Srednjesolska izobrazba"
+
+ZenskeNemcija[1,1] <- "20-24 let"
+ZenskeNemcija[2,1] <- "20-24 let"
+ZenskeNemcija[7,1] <- "20-24 let"
+ZenskeNemcija[3,1] <- "30-34 let"
+ZenskeNemcija[12,1] <- "30-34 let"
+ZenskeNemcija[11,1] <- "25-29 let"
+ZenskeNemcija[4,1] <- "35-39 let"
+ZenskeNemcija[5,1] <- "35-39 let"
+ZenskeNemcija[6,1] <- "35-39 let"
+ZenskeNemcija[10,1] <- "25-29 let"
+ZenskeNemcija[8,1] <- "30-34 let"
+ZenskeNemcija[9,1] <- "25-29 let"
 
 
 # ŽENSKE SLOVENIJA IZOBRAZBA
@@ -80,8 +133,9 @@ ZenskeSlovenija <- uvozi.IzobrazbaZenskeSlovenija()
 
 colnames(ZenskeSlovenija) = c("Stevilo zensk z osnovnosolsko izobrazbo", "Stevilo zensk s srednjesolsko izobrazbo", "Stevilo zensk z visokosolsko izobrazbo")
 
-ZenskeSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
+ZenskeSlovenija <- data.frame(Starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
                              ZenskeSlovenija)
+
 # MOŠKI SLOVENIJA IZOBRAZBA
 
 library(XML)
@@ -112,30 +166,19 @@ uvozi.IzobrazbaMoskiSlovenija <- function() {
   
   colnames(MoskiSlovenija) = c("Stevilo moskih z osnovnosolsko izobrazbo", "Stevilo moskih s srednjesolsko izobrazbo", "Stevilo moskih z visokosolsko izobrazbo")
   
-  MoskiSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
+  MoskiSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39"),
                                 MoskiSlovenija)
+
   
-  #AKTIVNO PREBIVALSTVO SLOVENIJA
+  #DELOVNA AKTIVNOST IN POVPREČNE BRUTO PLAČE V SLOVENIJI
   
-  uvozi.AktivnoPrebivalstvoSlovenija <- function() {
-    return(read.table("podatki/AktivnoPrebivalstvoSlovenija.csv", sep = ";", skip = 4, as.is = TRUE,
+  uvozi.PlaceAktivnostSlovenija <- function() {
+    return(read.csv2("podatki/PlaceAktivnostSlovenija.csv", sep = ";", skip = 0, as.is = TRUE,
                       row.names = NULL,
-                      col.names = 1:6,
                       fileEncoding = "Windows-1250"))
   }
   
-  AktivnostSlovenija <- uvozi.AktivnoPrebivalstvoSlovenija()
-  
-  #POVREČNE PLAČE SLOVENIJA
-  
-  uvozi.PovprecnePlaceSlovenija <- function() {
-    return(read.table("podatki/PovprecnePlaceSlovenija.csv", sep = ";", skip = 4, as.is = TRUE,
-                      row.names = NULL,
-                      col.names = 1:6,
-                      fileEncoding = "Windows-1250"))
-  }
-  
-  BrutoPlaceSlovenija <- uvozi.PovprecnePlaceSlovenija()
+  PlaceAktivnostSlovenija <- uvozi.PlaceAktivnostSlovenija()
   
 
   
