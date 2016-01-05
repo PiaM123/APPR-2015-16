@@ -9,7 +9,9 @@
 # fazah.
 
 
-# MOŠKI NEMČIJA IZOBRAZBA
+# IZOBRAZBA MOŠKIH V NEMČIJI
+
+#Uvozimo podatke 
 uvozi.IzobrazbaMoskiNemcija <- function() {
   return(read.table("podatki/IzobrazbaMoskiNemcija.csv", sep = ",", skip = 1, as.is = TRUE,
                     row.names = NULL,
@@ -19,26 +21,29 @@ uvozi.IzobrazbaMoskiNemcija <- function() {
 
 MoskiNemcija <- uvozi.IzobrazbaMoskiNemcija()
 
+#Izbrišemo stolpce, ki jih ne potrebujemo
 MoskiNemcija <- MoskiNemcija[,-1:-5]
 MoskiNemcija <- MoskiNemcija[,-2:-4]
 MoskiNemcija <- MoskiNemcija[,-3:-5]
 MoskiNemcija <- MoskiNemcija[,-4:-9]
 MoskiNemcija <- MoskiNemcija[,-5:-6]
 
-colnames(MoskiNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Stevilo oseb")
+#Dodamo imena stolpcev
+colnames(MoskiNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Število oseb")
 
-MoskiNemcija[1,2] <- "Osnovnosolka izobrazba"
-MoskiNemcija[3,2] <- "Osnovnosolka izobrazba"
-MoskiNemcija[7,2] <- "Osnovnosolka izobrazba"
-MoskiNemcija[12,2] <- "Osnovnosolka izobrazba"
-MoskiNemcija[2,2] <- "Srednjesolska izobrazba"
-MoskiNemcija[4,2] <- "Srednjesolska izobrazba"
-MoskiNemcija[8,2] <- "Srednjesolska izobrazba"
-MoskiNemcija[10,2] <- "Srednjesolska izobrazba"
-MoskiNemcija[5,2] <- "Visokosolska izobrazba"
-MoskiNemcija[6,2] <- "Visokosolska izobrazba"
-MoskiNemcija[9,2] <- "Visokosolska izobrazba"
-MoskiNemcija[11,2] <- "Visokosolska izobrazba"
+#Popravimo imena, da so v slovenščini
+MoskiNemcija[1,2] <- "Osnovnošolska izobrazba"
+MoskiNemcija[3,2] <- "Osnovnošolska izobrazba"
+MoskiNemcija[7,2] <- "Osnovnošolska izobrazba"
+MoskiNemcija[12,2] <- "Osnovnošolska izobrazba"
+MoskiNemcija[2,2] <- "Srednješolska izobrazba"
+MoskiNemcija[4,2] <- "Srednješolska izobrazba"
+MoskiNemcija[8,2] <- "Srednješolska izobrazba"
+MoskiNemcija[10,2] <- "Srednješolska izobrazba"
+MoskiNemcija[5,2] <- "Visokošolska izobrazba"
+MoskiNemcija[6,2] <- "Visokošolska izobrazba"
+MoskiNemcija[9,2] <- "Visokošolska izobrazba"
+MoskiNemcija[11,2] <- "Visokošolska izobrazba"
 
 MoskiNemcija[1,1] <- "20-24 let"
 MoskiNemcija[2,1] <- "20-24 let"
@@ -56,7 +61,9 @@ MoskiNemcija[9,1] <- "25-29 let"
 
 
 
-# ŽENSKE NEMČIJA IZOBRAZBA
+# IZOBRAZBA ŽENSK V NEMČIJI
+
+#Uvozimo podatke
 uvozi.IzobrazbaZenskeNemcija <- function() {
   return(read.table("podatki/IzobrazbaZenskeNemcija.csv", sep = ",", skip=1, as.is = TRUE,
                     row.names = NULL,
@@ -66,27 +73,29 @@ uvozi.IzobrazbaZenskeNemcija <- function() {
 
 ZenskeNemcija <- uvozi.IzobrazbaZenskeNemcija()
 
+#Odstranimo nepotrebne stolpce
 ZenskeNemcija <- ZenskeNemcija[,-1:-5]
 ZenskeNemcija <- ZenskeNemcija[,-2:-4]
 ZenskeNemcija <- ZenskeNemcija[,-3:-5]
 ZenskeNemcija <- ZenskeNemcija[,-4:-9]
 ZenskeNemcija <- ZenskeNemcija[,-5:-6]
 
-colnames(ZenskeNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Stevilo oseb")
+#Dodamo imena stolpcev
+colnames(ZenskeNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Število oseb")
 
-
-ZenskeNemcija[1,2] <- "Osnovnosolka izobrazba"
-ZenskeNemcija[4,2] <- "Osnovnosolka izobrazba"
-ZenskeNemcija[8,2] <- "Osnovnosolka izobrazba"
-ZenskeNemcija[11,2] <- "Osnovnosolka izobrazba"
-ZenskeNemcija[2,2] <- "Srednjesolska izobrazba"
-ZenskeNemcija[3,2] <- "Srednjesolska izobrazba"
-ZenskeNemcija[5,2] <- "Srednjesolska izobrazba"
-ZenskeNemcija[9,2] <- "Srednjesolska izobrazba"
-ZenskeNemcija[6,2] <- "Visokosolska izobrazba"
-ZenskeNemcija[7,2] <- "Srednjesolska izobrazba"
-ZenskeNemcija[10,2] <- "Visokosolska izobrazba"
-ZenskeNemcija[12,2] <- "Srednjesolska izobrazba"
+#Popravimo imena, da bodo v slovenščini
+ZenskeNemcija[1,2] <- "Osnovnošolska izobrazba"
+ZenskeNemcija[4,2] <- "Osnovnošolska izobrazba"
+ZenskeNemcija[8,2] <- "Osnovnošolska izobrazba"
+ZenskeNemcija[11,2] <- "Osnovnošolska izobrazba"
+ZenskeNemcija[2,2] <- "Srednješolska izobrazba"
+ZenskeNemcija[3,2] <- "Srednješolska izobrazba"
+ZenskeNemcija[5,2] <- "Srednješolska izobrazba"
+ZenskeNemcija[9,2] <- "Srednješolska izobrazba"
+ZenskeNemcija[6,2] <- "Visokošolska izobrazba"
+ZenskeNemcija[7,2] <- "Srednješolska izobrazba"
+ZenskeNemcija[10,2] <- "Visokošolska izobrazba"
+ZenskeNemcija[12,2] <- "Srednješolska izobrazba"
 
 ZenskeNemcija[1,1] <- "20-24 let"
 ZenskeNemcija[2,1] <- "20-24 let"
@@ -102,8 +111,9 @@ ZenskeNemcija[8,1] <- "30-34 let"
 ZenskeNemcija[9,1] <- "25-29 let"
 
 
-# ŽENSKE SLOVENIJA IZOBRAZBA
+#IZOBRAZBA ŽENSK V SLOVENIJI
 
+#Uvozimo podatke
 library(XML)
 Sys.setlocale("LC_TIME", "C")
 
@@ -125,19 +135,23 @@ uvozi.IzobrazbaZenskeSlovenija <- function() {
   matrika <- apply(matrika[-nrow(matrika),], 2, as.numeric)
   colnames(matrika) <- gsub("\n", " ", stripByPath(vrstice[[3]], ".//th"))[2:4]
   return(
-    data.frame("Stevilo oseb z osnovnosolsko izobrazbo" = matrika[,1], "Stevilo oseb s srednjesolsko izobrazbo" = matrika[,2], "Stevilo oseb z visokosolsko izobrazbo" = matrika[,3], row.names=1:4)
+    data.frame("Število oseb z osnovnoŠolsko izobrazbo" = matrika[,1], "Število oseb s srednješolsko izobrazbo" = matrika[,2], "Število oseb z visokošolsko izobrazbo" = matrika[,3], row.names=1:4)
   )
 }
 
 ZenskeSlovenija <- uvozi.IzobrazbaZenskeSlovenija()
 
-colnames(ZenskeSlovenija) = c("Stevilo zensk z osnovnosolsko izobrazbo", "Stevilo zensk s srednjesolsko izobrazbo", "Stevilo zensk z visokosolsko izobrazbo")
+#Dodamo imena stolpcev
+colnames(ZenskeSlovenija) = c("Število žensk z osnovnošolsko izobrazbo", "Število žensk s srednješolsko izobrazbo", "Število žensk z visokošolsko izobrazbo")
 
 ZenskeSlovenija <- data.frame(Starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
                              ZenskeSlovenija)
 
-# MOŠKI SLOVENIJA IZOBRAZBA
 
+
+#IZOBRAZBA MOŠKIH V SLOVENIJI
+
+#Uvozimo podatke
 library(XML)
 Sys.setlocale("LC_TIME", "C")
 
@@ -159,19 +173,31 @@ uvozi.IzobrazbaMoskiSlovenija <- function() {
   matrika <- apply(matrika[-nrow(matrika),], 2, as.numeric)
   colnames(matrika) <- gsub("\n", " ", stripByPath(vrstice[[3]], ".//th"))[2:4]
   return(
-    data.frame("Stevilo oseb z osnovnosolsko izobrazbo" = matrika[,1], "Stevilo oseb s srednjesolsko izobrazbo" = matrika[,2], "Stevilo oseb z visokosolsko izobrazbo" = matrika[,3], row.names=1:4)
+    data.frame("Število oseb z osnovnošolsko izobrazbo" = matrika[,1], "Število oseb s srednješolsko izobrazbo" = matrika[,2], "Število oseb z visokošolsko izobrazbo" = matrika[,3], row.names=1:4)
   )
 }
   MoskiSlovenija <- uvozi.IzobrazbaMoskiSlovenija()
   
-  colnames(MoskiSlovenija) = c("Število moskih z osnovnosolsko izobrazbo", "Stevilo moskih s srednjesolsko izobrazbo", "Stevilo moskih z visokosolsko izobrazbo")
+#Dodamo imena stolpcev
+  colnames(MoskiSlovenija) = c("Število moških z osnovnošolsko izobrazbo", "Število moških s srednješolsko izobrazbo", "Število moških z visokošolsko izobrazbo")
   
   MoskiSlovenija <- data.frame(Starost = c("20-24 let", "25-29 let", "30-34 let", "35-39"),
                                 MoskiSlovenija)
-
   
-  #DELOVNA AKTIVNOST IN POVPREČNE BRUTO PLAČE V SLOVENIJI
+#Izobrazbo v Sloveniji damo v obliko tidy data  
+  IzobrazbaSlovenija <- data.frame(Spol = c(rep("ženski", 12), rep("moški", 12)),
+                                    Starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
+                                    Leto = 2013,
+                                    Stopnja.izobrazbe = c("Osnovnošolska izobrazba",
+                                                          "Srednješolska izobrazba",
+                                                          "Visokošolska izobrazba") %>%
+                                      matrix(ncol = 4, nrow = 3) %>% t() %>% as.vector(),
+                                    Stevilo.oseb = c(ZenskeSlovenija[-1] %>% as.matrix() %>% as.vector(),
+                                                     MoskiSlovenija[-1] %>% as.matrix() %>% as.vector()))
   
+#DELOVNA AKTIVNOST IN POVPREČNE BRUTO PLAČE V SLOVENIJI
+  
+#Uvozimo podatke za povprečne bruto plače in delovno aktivnost  
   uvozi.PlaceAktivnostSlovenija <- function() {
     return(read.csv2("podatki/PlaceAktivnostSlovenija.csv", sep = ";", skip = 0, as.is = TRUE,
                       row.names = NULL,
