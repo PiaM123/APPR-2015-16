@@ -32,18 +32,18 @@ MoskiNemcija <- MoskiNemcija[,-5:-6]
 colnames(MoskiNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Število oseb")
 
 #Popravimo imena, da so v slovenščini
-MoskiNemcija[1,2] <- "Osnovnošolska izobrazba"
-MoskiNemcija[3,2] <- "Osnovnošolska izobrazba"
-MoskiNemcija[7,2] <- "Osnovnošolska izobrazba"
-MoskiNemcija[12,2] <- "Osnovnošolska izobrazba"
-MoskiNemcija[2,2] <- "Srednješolska izobrazba"
-MoskiNemcija[4,2] <- "Srednješolska izobrazba"
-MoskiNemcija[8,2] <- "Srednješolska izobrazba"
-MoskiNemcija[10,2] <- "Srednješolska izobrazba"
-MoskiNemcija[5,2] <- "Visokošolska izobrazba"
-MoskiNemcija[6,2] <- "Visokošolska izobrazba"
-MoskiNemcija[9,2] <- "Visokošolska izobrazba"
-MoskiNemcija[11,2] <- "Visokošolska izobrazba"
+MoskiNemcija[1,2] <- "Osnovna"
+MoskiNemcija[3,2] <- "Osnovna"
+MoskiNemcija[7,2] <- "Osnovna"
+MoskiNemcija[12,2] <- "Osnovna"
+MoskiNemcija[2,2] <- "Srednja"
+MoskiNemcija[4,2] <- "Srednja"
+MoskiNemcija[8,2] <- "Srednja"
+MoskiNemcija[10,2] <- "Srednja"
+MoskiNemcija[5,2] <- "Visoka"
+MoskiNemcija[6,2] <- "Visoka"
+MoskiNemcija[9,2] <- "Visoka"
+MoskiNemcija[11,2] <- "Visoka"
 
 MoskiNemcija[1,1] <- "20-24 let"
 MoskiNemcija[2,1] <- "20-24 let"
@@ -84,18 +84,18 @@ ZenskeNemcija <- ZenskeNemcija[,-5:-6]
 colnames(ZenskeNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Število oseb")
 
 #Popravimo imena, da bodo v slovenščini
-ZenskeNemcija[1,2] <- "Osnovnošolska izobrazba"
-ZenskeNemcija[4,2] <- "Osnovnošolska izobrazba"
-ZenskeNemcija[8,2] <- "Osnovnošolska izobrazba"
-ZenskeNemcija[11,2] <- "Osnovnošolska izobrazba"
-ZenskeNemcija[2,2] <- "Srednješolska izobrazba"
-ZenskeNemcija[3,2] <- "Srednješolska izobrazba"
-ZenskeNemcija[5,2] <- "Srednješolska izobrazba"
-ZenskeNemcija[9,2] <- "Srednješolska izobrazba"
-ZenskeNemcija[6,2] <- "Visokošolska izobrazba"
-ZenskeNemcija[7,2] <- "Srednješolska izobrazba"
-ZenskeNemcija[10,2] <- "Visokošolska izobrazba"
-ZenskeNemcija[12,2] <- "Srednješolska izobrazba"
+ZenskeNemcija[1,2] <- "Osnovna"
+ZenskeNemcija[4,2] <- "Osnovna"
+ZenskeNemcija[8,2] <- "Osnovna"
+ZenskeNemcija[11,2] <- "Osnovna"
+ZenskeNemcija[2,2] <- "Srednja"
+ZenskeNemcija[3,2] <- "Srednja"
+ZenskeNemcija[5,2] <- "Srednja"
+ZenskeNemcija[9,2] <- "Srednja"
+ZenskeNemcija[6,2] <- "Visoka"
+ZenskeNemcija[7,2] <- "Visoka"
+ZenskeNemcija[10,2] <- "Visoka"
+ZenskeNemcija[12,2] <- "Visoka"
 
 ZenskeNemcija[1,1] <- "20-24 let"
 ZenskeNemcija[2,1] <- "20-24 let"
@@ -188,9 +188,9 @@ uvozi.IzobrazbaMoskiSlovenija <- function() {
   IzobrazbaSlovenija <- data.frame(Spol = c(rep("ženski", 12), rep("moški", 12)),
                                     Starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
                                     Leto = 2013,
-                                    Stopnja.izobrazbe = c("Osnovnošolska izobrazba",
-                                                          "Srednješolska izobrazba",
-                                                          "Visokošolska izobrazba") %>%
+                                    Stopnja.izobrazbe = c("Osnovna",
+                                                          "Srednja",
+                                                          "Visoka") %>%
                                       matrix(ncol = 4, nrow = 3) %>% t() %>% as.vector(),
                                     Stevilo.oseb = c(ZenskeSlovenija[-1] %>% as.matrix() %>% as.vector(),
                                                      MoskiSlovenija[-1] %>% as.matrix() %>% as.vector()))
