@@ -1,10 +1,5 @@
 # 2. faza: Uvoz podatkov
 
-require(dplyr)
-require(rvest)
-require(gsubfn)
-
-
 # Funkcija, ki uvozi podatke iz datoteke druzine.csv
 # Zapišimo podatke v razpredelnico druzine.
 #druzine <- uvozi.druzine()
@@ -68,7 +63,6 @@ colnames(ZenskeNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Stevilo ose
 
 # ŽENSKE SLOVENIJA
 
-library(XML)
 Sys.setlocale("LC_TIME", "C")
 
 stripByPath <- function(x, path) {
@@ -95,11 +89,13 @@ uvozi.IzobrazbaZenskeSlovenija <- function() {
 
 ZenskeSlovenija <- uvozi.IzobrazbaZenskeSlovenija()
 
-rownames(ZenskeSlovenija) = c("20-24 let", "25-29 let", "30-34 let", "35-39 let", "nič")
+colnames(ZenskeSlovenija) = c("Stevilo zensk z osnovnosolsko izobrazbo", "Stevilo zensk s srednjesolsko izobrazbo", "Stevilo zensk z visokosolsko izobrazbo")
 
+ZenskeSlovenija <- ZenskeSlovenija[-nrow(ZenskeSlovenija),]
+ZenskeSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
+                             ZenskeSlovenija)
 # MOŠKI SLOVENIJA
 
-library(XML)
 Sys.setlocale("LC_TIME", "C")
 
 stripByPath <- function(x, path) {
@@ -126,4 +122,26 @@ uvozi.IzobrazbaMoskiSlovenija <- function() {
 
 MoskiSlovenija <- uvozi.IzobrazbaMoskiSlovenija()
 
+<<<<<<< HEAD
 rownames(MoskiSlovenija) = c("20-24 let", "25-29 let", "30-34 let", "35-39 let", "nič")
+=======
+colnames(MoskiSlovenija) = c("Stevilo moskih z osnovnosolsko izobrazbo", "stevilo moskih s srednjesolsko izobrazbo", "Stevilo moskih z visokosolsko izobrazbo")
+
+MoskiSlovenija <- MoskiSlovenija[-nrow(MoskiSlovenija),]
+MoskiSlovenija <- data.frame(starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
+                             MoskiSlovenija)
+
+#Graf za izobrazbo moških v Sloveniji
+
+grafMS <- ggplot(MoskiSlovenija, aes(x = starost, y = Stevilo.moskih.z.visokosolsko.izobrazbo,)) +
+  geom_bar(stat = "identity") + theme_minimal() + aes(fill=starost) +
+  labs(title="Število moških z visokošolsko izobrazbo v Sloveniji", y="Število")
+
+
+#Graf za izobrazbo žensk v Sloveniji.
+
+grafZS <- ggplot(ZenskeSlovenija, aes(x = starost, y = Stevilo.zensk.z.visokosolsko.izobrazbo,)) +
+  geom_bar(stat = "identity") + theme_minimal() + aes(fill=starost) + 
+  labs(title="Število žensk v Sloveniji z visokošolsko izobrazbo", y="Število")
+
+>>>>>>> a5797661d6e7f5836a43888ca19dbd4ede4de974

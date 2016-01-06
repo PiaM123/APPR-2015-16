@@ -1,5 +1,5 @@
 ---
-title: "Poročilo pri predmetu Analiza podatkov s programom R"
+title: "Analiza izobrazbe v Sloveniji in Nemčiji"
 author: "Pia Modrijan"
 output:
   pdf_document:
@@ -8,7 +8,7 @@ output:
       in_header: lib/styles.sty
 ---
 
-```{r setup, echo=FALSE, results='hide', message=FALSE}
+```{r setup, echo=FALSE, results='hide', message=FALSE, warning = FALSE}
 # Če želimo nastaviti pisave v PDF-ju, odkomentiramo
 # in sledimo navodilom v programu.
 #source("fontconfig.r", encoding = "UTF-8")
@@ -19,7 +19,17 @@ source("lib/libraries.r", encoding = "UTF-8")
 
 # Izbira teme
 
-Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
+Analizirala bom stopnjo izobrazbe moških in žensk v Sloveniji in v Nemčiji v letu 2013. Osredotočila se bom na osnovnošolsko, srednješolsko in visokošolsko izobrazbo.
+V nadaljevanju bom primirjala delež oseb z osnovnošolsko, srednješolsko in visokošolsko izobrazbo pri nas in v Nemčiji, primerjave pa bom naredila tudi po spolu.
+Zanimale me bodo osebe stare 20 do 24 let, 25 do 29 let, 30 do 34 let in 35 do 39 let.
+
+Podatke sem pridobila na spletu:
+
+<http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=05G2010S&ti=&path=../Database/Dem_soc/05_prebivalstvo/20_soc_ekon_preb/01_05G20_izobrazba/&lang=2>
+
+<http://stats.oecd.org/Index.aspx?datasetcode=EDU_ENRL_AGE#>
+
+
 
 ***
 
@@ -29,57 +39,38 @@ Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
 source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
 
-Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki HTML
-z Wikipedije. Poglejmo si začetka obeh uvoženih razpredelnic.
+Uvozila sem podatke o izobrazbi žensk in moških v Sloveniji v obliki HTML iz spletne strani statističnega urada, ter podatke o izobrazbi žensk in moških v Nemčiji v obliki CSV iz spletne strani OECD.
 
 ```{r razpredelnice}
-kable(head(druzine))
-head(obcine)
+kable(head(MoskiSlovenija))
+kable(head(MoskiNemcija))
+kable(head(ZenskeSlovenija))
+kable(head(ZenskeNemcija))
 ```
 
-Slika \ref{fig:histogram} prikazuje porazdelitev števila naselij v občinah.
+V vseh tabelah so podatki točne številke oseb z določeno stopnjo izobrazbe.
+V prvi tabeli so podatki za izobrazbo moških v Sloveniji. Ta tabela ima 4 vrstice in 3 stolpce. 
+Druga tabela prikazuje podatke za moške v Nemčiji in je sestavljena iz 12 vrstic in 4 stolpcev.
+Tretja tabela prikazuje podatke za ženske v Sloveniji in je enako velika kot tabela za moške v Sloveniji.
+Zadnja pa je za izobrazbo žensk v Nemčiji
+in je enako velika kot tista za izobrazbo moških v Nemčiji.
 
-```{r histogram, echo=FALSE, fig.align='center', fig.cap='Histogram števila naselij v občinah'}
-hist(obcine[,4], main = "Pogostost števila naselij",
-     xlab = "Število naselij", ylab = "Število občin")
+```
+grafMS <- ggplot(MoskiSlovenija, aes(x = starost, y = Stevilo.moskih.z.visokosolsko.izobrazbo,)) +
+  geom_bar(stat = "identity") + theme_minimal() + aes(color=starost) +
+  labs(title="Število moških z visokošolsko izobrazbo v Sloveniji", y="Število")
+print(grafMS)
 ```
 
-***
+Graf prikazuje število moških v Sloveniji, ki imajo visokošolsko izobrazbo. Razdeljeni so v starostne skupine od 20 do 24 let, od 25 do 29, od 30 do 34 ter od 35 do 39 let.
+V grafu lahko vidimo, da je med tistimi, ki imajo visokošolsko izobrazbo največ tistih, ki so stari med 30 in 34 let in česar lahko sklepamo, da v času, ko bi se morale osebe starejše od 35 let vpisati na fakulteto še ni bilo tako množičnega vpisa in jih je veliko ostalo z srednješolsko ali nižjo izobrazbo.
 
-# Analiza in vizualizacija podatkov
-
-```{r vizualizacija, echo=FALSE}
-source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
+```
+grafZS <- ggplot(ZenskeSlovenija, aes(x = starost, y = Stevilo.zensk.z.visokosolsko.izobrazbo,)) +
+  geom_bar(stat = "identity") + theme_minimal() + aes(color=starost) + 
+  labs(title="Število žensk v Sloveniji z visokošolsko izobrazbo", y="Število") 
+print(grafZS)
 ```
 
-Slika \ref{fig:zemljevid} prikazuje povprečno velikost družine za vsako občino.
-
-```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povprečnega števila otrok v družini'}
-n <- 100
-barve <- topo.colors(n)[1+(n-1)*(druzine$povprecje-min.povprecje)/(max.povprecje-min.povprecje)]
-plot(zemljevid, col = barve)
-title("Povprečno število otrok v družini")
-```
-
-***
-
-# Napredna analiza podatkov
-
-```{r analiza, echo=FALSE}
-source("analiza/analiza.r", encoding = "UTF-8")
-```
-
-Slika \ref{fig:graf} prikazuje povezavo med številom naselij in površino občine.
-
-```{r graf, echo=FALSE, fig.align='center', fig.cap='Povezava med številom naselij in površino občine'}
-plot(obcine[[1]], obcine[[4]],
-     main = "Število naselij glede na površino občine",
-     xlab = expression("Površina (km"^2 * ")"),
-     ylab = "Št. naselij",
-     col = barve[obcine[[7]]],
-     pch = 18)
-legend("topright", legend = names(barve), col = barve,
-       pch = 18, cex = 0.5, bg = "white")
-```
-
-***
+Ta graf pa prikazuje število žensk v Sloveniji, ki imajo visokošolsko izobrazbo. Prav tako so razdeljene v starostne skupine.
+Vidimo, da tudi pri ženskah prevladuje število tistih, ki štejejo od 30 do 34 let. Je pa žensk z visokošolsko izobrazbo veliko več kot moških.
