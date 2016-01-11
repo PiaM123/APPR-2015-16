@@ -8,7 +8,7 @@ output:
       in_header: lib/styles.sty
 ---
 
-```{r setup, echo=FALSE, results='hide', message=FALSE}
+```{r setup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 # Če želimo nastaviti pisave v PDF-ju, odkomentiramo
 # in sledimo navodilom v programu.
 #source("fontconfig.r", encoding = "UTF-8")
@@ -89,4 +89,13 @@ grafPlaceAktivnost <- ggplot(PlaceAktivnostSlovenija, aes(x=Stopnja.Izobrazbe, y
   labs(title = "Število delovno aktivnih oseb glede na stopnjo izobrazabe")
 print(grafPlaceAktivnost)
 ```
+
+Ta graf prikazuje število delovno aktivnih oseb glede na stopnjo izobrazbe. Vidimo, da je največ delovno aktivnih oseb dokončalo srednješolsko izobrazbo in najmanj osnovnošolsko izobrazbo.
+
+```{r grafIzobrazbaSpol, echo=FALSE}
+ggplot(IzobrazbaSlovenija %>% filter(Leto == 2013) %>%
+         group_by(Spol, Stopnja.izobrazbe) %>% summarise(Skupaj = sum(Stevilo.oseb)/1000),
+       aes(x = Stopnja.izobrazbe, y = Skupaj, fill = Spol)) +
+  geom_bar(stat = "identity", position = "dodge")
+print(grafIzobrazbaSpol)
 ```
