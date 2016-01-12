@@ -92,7 +92,7 @@ print(grafPlaceAktivnost)
 
 Ta graf prikazuje število delovno aktivnih oseb glede na stopnjo izobrazbe. Vidimo, da je največ delovno aktivnih oseb dokončalo srednješolsko izobrazbo in najmanj osnovnošolsko izobrazbo.
 
-```{r grafIzobrazbaSpol, echo=FALSE}
+```{r grafIzobrazbaSpolSlo, echo=FALSE}
 ggplot(IzobrazbaSlovenija %>% filter(Leto == 2013) %>%
          group_by(Spol, Stopnja.izobrazbe) %>% summarise(Skupaj = sum(Stevilo.oseb)/1000),
        aes(x = Stopnja.izobrazbe, y = Skupaj, fill = Spol)) +
