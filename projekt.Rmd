@@ -34,7 +34,7 @@ Podatke sem pridobila na spletu:
 
 * <http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=0711340S&ti=&path=../Database/Dem_soc/07_trg_dela/10_place/03_07113_strukt_statistika/&lang=2>
 
-***
+------
 
 # Obdelava, uvoz in čiščenje podatkov
 
@@ -74,28 +74,50 @@ V vseh tabelah so podatki točne številke oseb z določeno stopnjo izobrazbe
 
 # Grafi
 
-```{r grafIzobrazbaSLO, echo=FALSE}
-grafIzobrazbaSLO <- ggplot(IzobrazbaSlovenija, aes(x=Stopnja.izobrazbe, y=Stevilo.oseb)) +
+```{r grafMN, echo=FALSE}
+grafMN <- ggplot(MoskiNemcija, aes(x=Stopnja.izobrazbe, y=Stevilo.oseb/1000)) +
   geom_bar(stat = "identity") + theme_minimal() + aes(fill=Stopnja.izobrazbe) +
-  labs(title = "Število oseb z določeno stopnjo izobrazbe v Sloveniji")
-print(grafIzobrazbaSLO)
+  labs(title = "Stevilo moških z določeno stopnjo izobrazbe v Nemčiji v 1000", x = "Stopnja izobrazbe", y=" Število moških v 1000")
+print(grafMN)
 ```
 
-Prvi graf prikazuje koliko je oseb s katero stopnjo izobrazbe v Sloveniji. Tu so moški in ženske združeni. Vidimo, da prevladujejo osebe, ki imajo srednješolsko izobrazbo.
-
-```{r grafPlaceAktivnost, echo=FALSE}
-grafPlaceAktivnost <- ggplot(PlaceAktivnostSlovenija, aes(x=Stopnja.Izobrazbe, y=Število.Delovno.Aktivnih.Oseb)) +
-  geom_bar(stat = "identity") + theme_minimal() + aes(fill=Stopnja.Izobrazbe) +
-  labs(title = "Število delovno aktivnih oseb glede na stopnjo izobrazabe")
-print(grafPlaceAktivnost)
+```{r grafZN, echo=FALSE}
+grafZN <- ggplot(ZenskeNemcija, aes(x=Stopnja.izobrazbe, y=Stevilo.oseb/1000)) +
+  geom_bar(stat = "identity") + theme_minimal() + aes(fill=Stopnja.izobrazbe) +
+  labs(title = "Stevilo žensk z določeno stopnjo izobrazbe v Nemčiji v 1000", x = "Stopnja izobrazbe", y=" Število moških v 1000")
+print(grafZN)
 ```
 
-Ta graf prikazuje število delovno aktivnih oseb glede na stopnjo izobrazbe. Vidimo, da je največ delovno aktivnih oseb dokončalo srednješolsko izobrazbo in najmanj osnovnošolsko izobrazbo.
+Tako pri moških kot pri ženskah v Nemčiji vidimo, da ni oseb, ki bi imele samo osnovnošolsko izobrazbo in da močno prevladuje visokošolska izobrazba, kar pokaže, da je Nemčija veliko bolj razvita od Slovenije in da veliko več dajo na izobrazbo, kar lahko vidimo ko primirjamo grafra s spodnjim, ki kaže podatke za Slovenijo.
+
 
 ```{r grafIzobrazbaSpol, echo=FALSE}
 grafIzobrazbaSpol <- ggplot(IzobrazbaSlovenija %>% filter(Leto == 2013) %>%
          group_by(Spol, Stopnja.izobrazbe) %>% summarise(Skupaj = sum(Stevilo.oseb)/1000),
        aes(x = Stopnja.izobrazbe, y = Skupaj, fill = Spol)) +
-  geom_bar(stat = "identity", position = "dodge")
+  geom_bar(stat = "identity", position = "dodge") + labs(title = "Stevilo zensk in moskih v Sloveniji z razlicnimi izobrazbami", y="Število oseb v 1000")
 print(grafIzobrazbaSpol)
 ```
+
+Ta graf prikazuje število moških in žensk z osnovnošolsko, srednješolsko in visokošolsko izobrazbo v Sloveniji. Vidimo, da ženske prevladujejo v višješolski izobrazbi medtem ko moški v osnovnošolski in srednješolski izobrazbi. 
+
+
+```{r grafAktivnost, echo=FALSE}
+grafAktivnost <- ggplot(PlaceAktivnostSlovenija, aes(x=Stopnja.Izobrazbe, y=Število.Delovno.Aktivnih.Oseb/1000)) +
+  geom_bar(stat = "identity") + theme_minimal() + aes(fill=Stopnja.Izobrazbe) +
+  labs(title = "Stevilo delovno aktivnih oseb glede na stopnjo izobrazabe v 1000")
+print(grafAktivnost)
+```
+
+Ta graf prikazuje število delovno aktivnih oseb glede na stopnjo izobrazbe. Vidimo, da je največ delovno aktivnih oseb dokončalo srednješolsko izobrazbo in najmanj osnovnošolsko izobrazbo.
+
+```{r grafPlace, echo=FALSE}
+grafPlace <- ggplot(PlaceAktivnostSlovenija, aes(x=Stopnja.Izobrazbe, y=Povprecna.mesecna.bruto.placa.v.EUR)) +
+  geom_bar(stat = "identity") + theme_minimal() + aes(fill=Stopnja.Izobrazbe) +
+  labs(title = "Višina plače v Sloveniji glede na izobrazbo")
+print(grafPlace)
+```
+
+Vidimo, da so plače sorazmerne višini izobrazbe, torej da je za najnižjo izobrazbo povprečno najnižja plača.
+
+------

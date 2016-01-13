@@ -29,7 +29,7 @@ MoskiNemcija <- MoskiNemcija[,-4:-9]
 MoskiNemcija <- MoskiNemcija[,-5:-6]
 
 #Dodamo imena stolpcev
-colnames(MoskiNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Število oseb")
+colnames(MoskiNemcija) = c("Starost", "Stopnja.izobrazbe", "Leto", "Stevilo.oseb")
 
 #Popravimo imena, da so v slovenščini
 MoskiNemcija[1,2] <- "Osnovna"
@@ -81,7 +81,7 @@ ZenskeNemcija <- ZenskeNemcija[,-4:-9]
 ZenskeNemcija <- ZenskeNemcija[,-5:-6]
 
 #Dodamo imena stolpcev
-colnames(ZenskeNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Število oseb")
+colnames(ZenskeNemcija) = c("Starost", "Stopnja.izobrazbe", "Leto", "Stevilo.oseb")
 
 #Popravimo imena, da bodo v slovenščini
 ZenskeNemcija[1,2] <- "Osnovna"
