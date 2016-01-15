@@ -29,7 +29,7 @@ MoskiNemcija <- MoskiNemcija[,-4:-9]
 MoskiNemcija <- MoskiNemcija[,-5:-6]
 
 #Dodamo imena stolpcev
-colnames(MoskiNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Število oseb")
+colnames(MoskiNemcija) = c("Starost", "Stopnja.izobrazbe", "Leto", "Stevilo.oseb")
 
 #Popravimo imena, da so v slovenščini
 MoskiNemcija[1,2] <- "Osnovna"
@@ -81,7 +81,7 @@ ZenskeNemcija <- ZenskeNemcija[,-4:-9]
 ZenskeNemcija <- ZenskeNemcija[,-5:-6]
 
 #Dodamo imena stolpcev
-colnames(ZenskeNemcija) = c("Starost", "Stopnja izobrazbe", "Leto", "Število oseb")
+colnames(ZenskeNemcija) = c("Starost", "Stopnja.izobrazbe", "Leto", "Stevilo.oseb")
 
 #Popravimo imena, da bodo v slovenščini
 ZenskeNemcija[1,2] <- "Osnovna"
@@ -145,7 +145,7 @@ ZenskeSlovenija <- uvozi.IzobrazbaZenskeSlovenija()
 colnames(ZenskeSlovenija) = c("Število žensk z osnovnošolsko izobrazbo", "Število žensk s srednješolsko izobrazbo", "Število žensk z visokošolsko izobrazbo")
 
 ZenskeSlovenija <- data.frame(Starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
-                             ZenskeSlovenija)
+                              ZenskeSlovenija)
 
 
 
@@ -176,37 +176,45 @@ uvozi.IzobrazbaMoskiSlovenija <- function() {
     data.frame("Število oseb z osnovnošolsko izobrazbo" = matrika[,1], "Število oseb s srednješolsko izobrazbo" = matrika[,2], "Število oseb z visokošolsko izobrazbo" = matrika[,3], row.names=1:4)
   )
 }
-  MoskiSlovenija <- uvozi.IzobrazbaMoskiSlovenija()
-  
-#Dodamo imena stolpcev
-  colnames(MoskiSlovenija) = c("Število moških z osnovnošolsko izobrazbo", "Število moških s srednješolsko izobrazbo", "Število moških z visokošolsko izobrazbo")
-  
-  MoskiSlovenija <- data.frame(Starost = c("20-24 let", "25-29 let", "30-34 let", "35-39"),
-                                MoskiSlovenija)
-  
-#Izobrazbo v Sloveniji damo v obliko tidy data  
-  IzobrazbaSlovenija <- data.frame(Spol = c(rep("ženski", 12), rep("moški", 12)),
-                                    Starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
-                                    Leto = 2013,
-                                    Stopnja.izobrazbe = c("Osnovna",
-                                                          "Srednja",
-                                                          "Visoka") %>%
-                                      matrix(ncol = 4, nrow = 3) %>% t() %>% as.vector(),
-                                    Stevilo.oseb = c(ZenskeSlovenija[-1] %>% as.matrix() %>% as.vector(),
-                                                     MoskiSlovenija[-1] %>% as.matrix() %>% as.vector()))
-  
-#DELOVNA AKTIVNOST IN POVPREČNE BRUTO PLAČE V SLOVENIJI
-  
-#Uvozimo podatke za povprečne bruto plače in delovno aktivnost  
-  uvozi.PlaceAktivnostSlovenija <- function() {
-    return(read.csv2("podatki/PlaceAktivnostSlovenija.csv", sep = ";", skip = 0, as.is = TRUE,
-                      row.names = NULL,
-                      fileEncoding = "Windows-1250"))
-  }
-  
-  
-  PlaceAktivnostSlovenija <- uvozi.PlaceAktivnostSlovenija()
-  
+MoskiSlovenija <- uvozi.IzobrazbaMoskiSlovenija()
 
-  
-  
+#Dodamo imena stolpcev
+colnames(MoskiSlovenija) = c("Število moških z osnovnošolsko izobrazbo", "Število moških s srednješolsko izobrazbo", "Število moških z visokošolsko izobrazbo")
+
+MoskiSlovenija <- data.frame(Starost = c("20-24 let", "25-29 let", "30-34 let", "35-39"),
+                             MoskiSlovenija)
+
+#Izobrazbo v Sloveniji damo v obliko tidy data  
+IzobrazbaSlovenija <- data.frame(Spol = c(rep("ženski", 12), rep("moški", 12)),
+                                 Starost = c("20-24 let", "25-29 let", "30-34 let", "35-39 let"),
+                                 Leto = 2013,
+                                 Stopnja.izobrazbe = c("Osnovna",
+                                                       "Srednja",
+                                                       "Visoka") %>%
+                                   matrix(ncol = 4, nrow = 3) %>% t() %>% as.vector(),
+                                 Stevilo.oseb = c(ZenskeSlovenija[-1] %>% as.matrix() %>% as.vector(),
+                                                  MoskiSlovenija[-1] %>% as.matrix() %>% as.vector()))
+
+#DELOVNA AKTIVNOST IN POVPREČNE BRUTO PLAČE V SLOVENIJI
+
+#Uvozimo podatke za povprečne bruto plače in delovno aktivnost  
+uvozi.PlaceAktivnostSlovenija <- function() {
+  return(read.csv2("podatki/PlaceAktivnostSlovenija.csv", sep = ";", skip = 0, as.is = TRUE,
+                   row.names = NULL,
+                   fileEncoding = "Windows-1250"))
+}
+
+
+PlaceAktivnostSlovenija <- uvozi.PlaceAktivnostSlovenija()
+
+#Uvozimo podatke za zemljevid - izobrazba v Sloveniji po regijah
+uvozi.IzobrazbaRegije <- function() {
+  return(read.table("podatki/IzobrazbaPoRegijah.csv", sep = ";", skip = 0, as.is = TRUE,
+                    row.names = NULL,
+                    fileEncoding = "Windows-1250"))
+}
+
+IzobrazbaRegije <- uvozi.IzobrazbaRegije()
+
+#Dodamo imena stolpcev
+colnames(IzobrazbaRegije) <- c("Regija", "Osnovna", "Srednja", "Visoka")
