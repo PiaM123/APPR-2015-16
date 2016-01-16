@@ -131,4 +131,3 @@ print(grafPlace)
 
 Vidimo, da so plače sorazmerne višini izobrazbe, torej da je za najnižjo izobrazbo povprečno najnižja plača.
 
-------
