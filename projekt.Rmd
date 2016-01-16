@@ -24,6 +24,8 @@ V nadaljevanju bom primirjala delež oseb z osnovnošolsko, srednješolsko in vi
 Zanimale me bodo osebe stare 20 do 24 let, 25 do 29 let, 30 do 34 let in 35 do 39 let.
 Za Slovenijo bom analizirala tudi povprečno mesečno plačo glede na stopnjo izobrazbe ter število delovno aktivnih glede na stopnjo izobrazbe. Za Nemčijo teh podatkov žal nisem dobila.
 
+Zaradi risanja zemljevida pa bom v Sloveniji izobrazbo analizirala tudi po regijah.
+
 Podatke sem pridobila na spletu:
 
 * <http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=05G2010S&ti=&path=../Database/Dem_soc/05_prebivalstvo/20_soc_ekon_preb/01_05G20_izobrazba/&lang=2>
@@ -33,6 +35,8 @@ Podatke sem pridobila na spletu:
 * <http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=0764701S&ti=&path=../Database/Dem_soc/07_trg_dela/06_akt_preb_reg_viri_strukturni/03_07647_del_aktivni_izobrazba/&lang=2>
 
 * <http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=0711340S&ti=&path=../Database/Dem_soc/07_trg_dela/10_place/03_07113_strukt_statistika/&lang=2>
+
+* <http://pxweb.stat.si/pxweb/Dialog/Saveshow.asp>
 
 ------
 
@@ -62,13 +66,21 @@ Ta tabela prikazuje podatke za izobrazbo žensk v Nemčiji. So v enaki obliki ko
 kable(head(ZenskeNemcija))
 ```
 
-Zadnja tabela pa vsebuje podatke o številu aktivnih oseb v Sloveniji po stopnji izobrazbe, ter povprečne mesečne bruto plače glede na stopnjo izobrazbe. Tudi ti podatki so ločeni po spolu.
+Ta tabela pa vsebuje podatke o številu aktivnih oseb v Sloveniji po stopnji izobrazbe, ter povprečne mesečne bruto plače glede na stopnjo izobrazbe. Tudi ti podatki so ločeni po spolu.
 
 ```{r PlaceAktivnost}
 kable(head(PlaceAktivnostSlovenija))
 ```
 
+
+Sedaj bom dodala še tabelo za izobrazbo Slovencev po regijah, da bom lahko narisala zemljevid.
+
+```{r Regije}
+kable(head(IzobrazbaRegije))
+```
+
 V vseh tabelah so podatki točne številke oseb z določeno stopnjo izobrazbe
+
 
 ------
 
@@ -90,14 +102,8 @@ print(grafZN)
 
 Tako pri moških kot pri ženskah v Nemčiji vidimo, da ni oseb, ki bi imele samo osnovnošolsko izobrazbo in da močno prevladuje visokošolska izobrazba, kar pokaže, da je Nemčija veliko bolj razvita od Slovenije in da veliko več dajo na izobrazbo, kar lahko vidimo ko primirjamo grafra s spodnjim, ki kaže podatke za Slovenijo.
 
-
-<<<<<<< HEAD
-```{r grafIzobrazbaSpolSlo, echo=FALSE}
-ggplot(IzobrazbaSlovenija %>% filter(Leto == 2013) %>%
-=======
 ```{r grafIzobrazbaSpol, echo=FALSE}
 grafIzobrazbaSpol <- ggplot(IzobrazbaSlovenija %>% filter(Leto == 2013) %>%
->>>>>>> 7a72f6a167f7dc020b8b044cbc310a8ab76618b7
          group_by(Spol, Stopnja.izobrazbe) %>% summarise(Skupaj = sum(Stevilo.oseb)/1000),
        aes(x = Stopnja.izobrazbe, y = Skupaj, fill = Spol)) +
   geom_bar(stat = "identity", position = "dodge") + labs(title = "Stevilo zensk in moskih v Sloveniji z razlicnimi izobrazbami", y="Število oseb v 1000")
@@ -117,7 +123,7 @@ print(grafAktivnost)
 Ta graf prikazuje število delovno aktivnih oseb glede na stopnjo izobrazbe. Vidimo, da je največ delovno aktivnih oseb dokončalo srednješolsko izobrazbo in najmanj osnovnošolsko izobrazbo.
 
 ```{r grafPlace, echo=FALSE}
-grafPlace <- ggplot(PlaceAktivnostSlovenija, aes(x=Stopnja.Izobrazbe, y=Povprecna.mesecna.bruto.placa.v.EUR)) +
+grafPlace <- ggplot(PlaceAktivnostSlovenija, aes(x=Stopnja.Izobrazbe, y=Povprečna.mesečna.bruto.plača.v.EUR)) +
   geom_bar(stat = "identity") + theme_minimal() + aes(fill=Stopnja.Izobrazbe) +
   labs(title = "Višina plače v Sloveniji glede na izobrazbo")
 print(grafPlace)

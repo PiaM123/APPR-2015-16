@@ -216,5 +216,4 @@ uvozi.IzobrazbaRegije <- function() {
 
 IzobrazbaRegije <- uvozi.IzobrazbaRegije()
 
-#Dodamo imena stolpcev
-colnames(IzobrazbaRegije) <- c("Regija", "Osnovna", "Srednja", "Visoka")
+colnames(IzobrazbaRegije) <- c("Regija", "Stevilo.oseb", "Izobrazba")
