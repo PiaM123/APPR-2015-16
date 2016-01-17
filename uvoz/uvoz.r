@@ -199,7 +199,7 @@ IzobrazbaSlovenija <- data.frame(Spol = c(rep("ženski", 12), rep("moški", 12))
 
 #Uvozimo podatke za povprečne bruto plače in delovno aktivnost  
 uvozi.PlaceAktivnostSlovenija <- function() {
-  return(read.csv2("podatki/PlaceAktivnostSlovenija.csv", sep = ";", skip = 0, as.is = TRUE,
+  return(read.csv2("podatki/PlaceAktivnostSlovenija.csv", sep = ";", skip = 0,
                    row.names = NULL,
                    fileEncoding = "Windows-1250"))
 }
