@@ -209,7 +209,7 @@ PlaceAktivnostSlovenija <- uvozi.PlaceAktivnostSlovenija()
 
 #Uvozimo podatke za zemljevid - izobrazba v Sloveniji po regijah
 uvozi.IzobrazbaRegije <- function() {
-  return(read.table("podatki/IzobrazbaPoRegijah.csv", sep = ";", skip = 0, as.is = TRUE,
+  return(read.table("podatki/IzobrazbaPoRegijah.csv", sep = ";", skip = 0, 
                     row.names = NULL,
                     fileEncoding = "Windows-1250"))
 }
