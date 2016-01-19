@@ -100,6 +100,7 @@ kable(head(IzobrazbaRegije))
 
 Tabela 5 prikazuje stopnjo izobrazbe po regijah v Sloveniji. Te podatke sem ravno tako uvozila v obliki CSV, dodala pa sem jih zato, da bom lahko narisala zemljevid.
 Ta tabela pa vsebuje samo 3 stolpce in sicer regijo, število oseb in stopnjo izobrazbe. 
+Naknadno sem tabeli dodala še 4. stolpec, zato da bom lahko narisala graf, ki bo kazal deleže visoko izobraženih oseb tako da ne bo vpliva števila prebivalcev v posamezni občini.
 
 \newpage
 
@@ -168,3 +169,13 @@ print(grafPlace)
 Iz grafa 5 vidimo, da so plače sorazmerne višini izobrazbe, torej da je za najnižjo izobrazbo povprečno najnižja plača ter za najvišjo izobrazbo najvišja plača. 
 To je seveda tudi prav, saj so morali tisti, ki imajo najvišjo izobrazbo vložiti veliko več truda, da so prišli do sedanjega delovnega mesta in plače.
 
+\newpage 
+
+# Zemljevid
+
+```{r vizualizacija, echo=FALSE, warning=FALSE}
+source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
+```
+
+Za zemlevid sem uporabila podatke za izobrazbo v Sloveniji po regijah. Da sem dobila realen zemljevid sem se odločila prikazati delež visoko izobraženih glede na vse osebe v določeni občini, tako da velikost občine in število njenih prebivalcev ne vpliva na rezultat izobraženosti.
+Da sem to lahko storila, sem morala v tabelo 5 dodati nov stolpec, v katerem sem poračunala deleže. 

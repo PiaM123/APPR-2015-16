@@ -17,9 +17,18 @@ pretvori.zemljevid <- function(zemljevid) {
   return(inner_join(fo, data, by="id"))
 }
 
+
 slo <- pretvori.zemljevid(zemljevid)
-ggplot() + geom_polygon(data = IzobrazbaRegije %>%
+
+ZemlevidIzobrazba <- ggplot() + geom_polygon(data = IzobrazbaRegije %>%
                           filter(Izobrazba == "Visoka") %>%
                           right_join(slo, by = c("Regija" = "NAME_1")),
                         aes(x = long, y = lat, group = group,
-                            fill = Stevilo.oseb))
+                            fill = Delež)) + ggtitle("Delež visoko izobraženih v posamezni regiji") 
+
+print(ZemlevidIzobrazba)
+
+
+
+
+                                          

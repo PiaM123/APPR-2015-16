@@ -217,3 +217,35 @@ uvozi.IzobrazbaRegije <- function() {
 IzobrazbaRegije <- uvozi.IzobrazbaRegije()
 
 colnames(IzobrazbaRegije) <- c("Regija", "Stevilo.oseb", "Izobrazba")
+
+#Seštejemo število prebivalcev v določeni regiji
+Pomurska <- sum(IzobrazbaRegije[1:3,2])
+Podravska <- sum(IzobrazbaRegije[4:6,2])
+Koroška <- sum(IzobrazbaRegije[7:9,2])
+Savinjska <- sum(IzobrazbaRegije[10:12,2])
+Zasavska <- sum(IzobrazbaRegije[13:15,2])
+Spodnjeposavska <- sum(IzobrazbaRegije[16:18,2])
+JugovzhodnaSlovenija <- sum(IzobrazbaRegije[19:21,2])
+Osredjeslovenska <- sum(IzobrazbaRegije[22:24,2])
+Gorenjska <- sum(IzobrazbaRegije[25:27,2])
+NotranjoKraška <- sum(IzobrazbaRegije[28:30,2])
+Goriška <- sum(IzobrazbaRegije[31:33,2])
+ObalnoKraška <- sum(IzobrazbaRegije[34:36,2])
+
+#Naredimo nov stolpec
+IzobrazbaRegije["Delež"] <- NA
+
+#Vstavimo deleže
+IzobrazbaRegije[1:3,4] <- IzobrazbaRegije[1:3,2]/Pomurska
+IzobrazbaRegije[4:6,4] <- IzobrazbaRegije[4:6,2]/Podravska
+IzobrazbaRegije[7:9,4] <- IzobrazbaRegije[7:9,2]/Koroška
+IzobrazbaRegije[10:12,4] <- IzobrazbaRegije[10:12,2]/Savinjska
+IzobrazbaRegije[13:15,4] <- IzobrazbaRegije[13:15,2]/Zasavska
+IzobrazbaRegije[16:18,4] <- IzobrazbaRegije[16:18,2]/Spodnjeposavska
+IzobrazbaRegije[19:21,4] <- IzobrazbaRegije[19:21,2]/JugovzhodnaSlovenija
+IzobrazbaRegije[22:24,4] <- IzobrazbaRegije[22:24,2]/Osredjeslovenska
+IzobrazbaRegije[25:27,4] <- IzobrazbaRegije[25:27,2]/Gorenjska
+IzobrazbaRegije[28:30,4] <- IzobrazbaRegije[28:30,2]/NotranjoKraška
+IzobrazbaRegije[31:33,4] <- IzobrazbaRegije[31:33,2]/Goriška
+IzobrazbaRegije[34:36,4] <- IzobrazbaRegije[34:36,2]/ObalnoKraška
+
