@@ -26,7 +26,6 @@ ZemlevidIzobrazba <- ggplot() + geom_polygon(data = IzobrazbaRegije %>%
                         aes(x = long, y = lat, group = group,
                             fill = Delež)) + ggtitle("Delež visoko izobraženih v posamezni regiji") + 
                       scale_fill_continuous(low = "#3f0000", high = "#ff0030")
-
   
 
 print(ZemlevidIzobrazba)

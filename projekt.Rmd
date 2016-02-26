@@ -48,11 +48,11 @@ source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
 
 Uvozila sem podatke o izobrazbi žensk in moških v Sloveniji v obliki HTML in CSV iz spletne strani statističnega urada Slovenije, ter podatke o izobrazbi žensk in moških v Nemčiji v obliki CSV iz spletne strani OECD.
-Naknadno sem uvozila še podatke za delovno aktivnost in povprečno mesečno bruto plačo v Sloveniji, ter za izobrazbo po regijah, da bom lahko narisala zemljevid.
+Naknadno sem uvozila še podatke za delovno aktivnost in povprečno mesečno bruto plačo v Sloveniji, za izobrazbo po regijah, da bom lahko narisala zemljevid ter izobrazbo po letih (2008-2013), zaradi napredne analize.
 
-Vsi podatki so samo za leto 2013, ker za Nemčijo nisem dobila podatkov za katerokoli drugo leto in bi bila tako primerjava nemogoča.
+Razen zadnjih so vsi omenjeni podatki samo za leto 2013, ker za Nemčijo nisem dobila podatkov za katerokoli drugo leto in bi bila tako primerjava nemogoča.
 
-V vseh posatkih je število oseb točno število.
+V vseh tabelah je število oseb točno število.
 
 ## Tabela 1: Izobrazba moških in žensk v Sloveniji
 ```{r IzobrazbaMZS}
@@ -108,7 +108,7 @@ Naknadno sem tabeli dodala še 4. stolpec, zato da bom lahko narisala graf, ki b
 kable(head(PlacaPoLetih))
 ```
 
-Tabela 6 prikazuje povprečno mesečno bruto plačo v Sloveniji glede na spol, leto in stopnjo izobrazbe. To tabelo bomo uporabili v 4. fazi. Podatki so uvoženi vobliki CSV. Podatke imamo za leta med 2008 do vključno 2013, izobrazbo pa kot že povsod v projektu ločimo na osnovno, srednjo in visoko.
+Tabela 6 prikazuje povprečno mesečno bruto plačo v Sloveniji glede na spol, leto in stopnjo izobrazbe. To tabelo bomo uporabili v 4. fazi. Podatki so uvoženi v obliki CSV. Podatke imamo za leta med 2008 do vključno 2013, izobrazbo pa kot že povsod v projektu ločimo na osnovno, srednjo in visoko. Ta tabela je zelo podobna tabeli 4, le da ima podatke za več let in ne samo za eno leto, saj bom le tako lahko podala napoved za povprečno mesečno bruto plačo v naslednjih letih. 
 
 \newpage
 
@@ -118,7 +118,8 @@ Tabela 6 prikazuje povprečno mesečno bruto plačo v Sloveniji glede na spol, l
 
 ```{r grafMN, echo=FALSE}
 grafMN <- ggplot(MoskiNemcija, aes(x=Stopnja.izobrazbe, y=Stevilo.oseb/1000)) +
-  geom_bar(stat = "identity") + theme_minimal() + aes(fill=Stopnja.izobrazbe) +
+  geom_bar(fill = "blue", width = .5, stat = "identity") + 
+  aes(fill=Stopnja.izobrazbe) +
   labs(title = "Število moških z določeno stopnjo izobrazbe v Nemčiji v 1000", x = "Stopnja izobrazbe", y=" Število moških v 1000")
 print(grafMN)
 ```
@@ -131,7 +132,7 @@ Lahko vidimo, da v tej starostni skupini v Nemčiji ni nobenega moškega, ki bi 
 
 ```{r grafZN, echo=FALSE}
 grafZN <- ggplot(ZenskeNemcija, aes(x=Stopnja.izobrazbe, y=Stevilo.oseb/1000)) +
-  geom_bar(stat = "identity") + theme_minimal() + aes(fill=Stopnja.izobrazbe) +
+  geom_bar(fill = "pink", width = .5, stat = "identity", position = "dodge")  + aes(fill=Stopnja.izobrazbe) +
   labs(title = "Število žensk z določeno stopnjo izobrazbe v Nemčiji v 1000", x = "Stopnja izobrazbe", y=" Število moških v 1000")
 print(grafZN)
 ```
@@ -158,7 +159,7 @@ Iz tega lahko vidimo, da Slovenci v povprečju nismo tako visoko izobraženi kot
 ## Graf 4
 ```{r grafAktivnost, echo=FALSE}
 grafAktivnost <- ggplot(PlaceAktivnostSlovenija, aes(x=Stopnja.Izobrazbe, y=Število.Delovno.Aktivnih.Oseb/1000)) +
-  geom_bar(stat = "identity") + theme_minimal() + aes(fill=Stopnja.Izobrazbe) +
+  geom_bar(width = .5, stat = "identity") + aes(fill=Stopnja.Izobrazbe) +
   labs(title = "Stevilo delovno aktivnih oseb glede na stopnjo izobrazabe v 1000")
 print(grafAktivnost)
 ```
@@ -169,7 +170,7 @@ Graf 4 prikazuje število delovno aktivnih oseb glede na stopnjo izobrazbe. Tudi
 
 ```{r grafPlace, echo=FALSE}
 grafPlace <- ggplot(PlaceAktivnostSlovenija, aes(x=Stopnja.Izobrazbe, y=Povprečna.mesečna.bruto.plača.v.EUR/2)) +
-  geom_bar(stat = "identity") + theme_minimal() + aes(fill=Stopnja.Izobrazbe) +
+  geom_bar(width = .5, stat = "identity") + aes(fill=Stopnja.Izobrazbe) +
   labs(title = "Višina plače v Sloveniji glede na izobrazbo")
 print(grafPlace)
 ```
@@ -177,13 +178,23 @@ print(grafPlace)
 Iz grafa 5 vidimo, da so plače sorazmerne višini izobrazbe, torej da je za najnižjo izobrazbo povprečno najnižja plača ter za najvišjo izobrazbo najvišja plača. 
 To je seveda tudi prav, saj so morali tisti, ki imajo najvišjo izobrazbo vložiti veliko več truda, da so prišli do sedanjega delovnega mesta in plače.
 
+
+
 \newpage 
 
-# Zemljevid
+# Vizualizacija podatkov
 
 ```{r vizualizacija, echo=FALSE, warning=FALSE}
 source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 ```
 
 Za zemlevid sem uporabila podatke za izobrazbo v Sloveniji po regijah. Da sem dobila realen zemljevid sem se odločila prikazati delež visoko izobraženih glede na vse osebe v določeni občini, tako da velikost občine in število njenih prebivalcev ne vpliva na rezultat izobraženosti.
-Da sem to lahko storila, sem morala v tabelo 5 dodati nov stolpec, v katerem sem poračunala deleže. 
+Da sem to lahko storila, sem morala v tabelo 5 dodati nov stolpec, v katerem sem poračunala deleže.
+Kljub temu, da so rezultati neodvisni od števila prebivalcev v določeni regiji, pa vidimo, da je najvišji delež visoko izobraženih ravno v osrednjeslovenski regiji.
+
+\newpage 
+
+# Napredna analiza
+
+V tem poglavju sem se odločila analizirati oziroma napovedati povprečno mesečno bruto plačo za naslednja leta, glede na podatke o plači iz prejšnjih let. Podatke imam za leta 2008, 2009, 2010, 2011, 2012 ter 2013. Ločeni so po spolu in stopnji izobrazbe.
+
