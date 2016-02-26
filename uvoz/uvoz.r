@@ -249,3 +249,16 @@ IzobrazbaRegije[28:30,4] <- IzobrazbaRegije[28:30,2]/NotranjoKraška
 IzobrazbaRegije[31:33,4] <- IzobrazbaRegije[31:33,2]/Goriška
 IzobrazbaRegije[34:36,4] <- IzobrazbaRegije[34:36,2]/ObalnoKraška
 
+# POVPREČNE MESEČNE BRUTO PLAČE PO LETIH GLEDE NA SPOL IN IZOBRAZBO
+# to tabelo uvozimo zaradi 4. faze
+
+uvozi.PlacaPoLetih<- function() {
+  return(read.table("podatki/PlacaPoLetih.csv", sep = ";", skip = 1, as.is = TRUE,
+                    row.names = NULL,
+                    fileEncoding = "Windows-1250"))
+}
+
+PlacaPoLetih <- uvozi.PlacaPoLetih()
+
+#Spremenimo imena stolpcev
+colnames(PlacaPoLetih) <- c("Leto", "Spol", "Izobrazba", "Plača")

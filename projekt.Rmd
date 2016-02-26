@@ -102,6 +102,14 @@ Tabela 5 prikazuje stopnjo izobrazbe po regijah v Sloveniji. Te podatke sem ravn
 Ta tabela pa vsebuje samo 3 stolpce in sicer regijo, število oseb in stopnjo izobrazbe. 
 Naknadno sem tabeli dodala še 4. stolpec, zato da bom lahko narisala graf, ki bo kazal deleže visoko izobraženih oseb tako da ne bo vpliva števila prebivalcev v posamezni občini.
 
+## Tabela 6: Povprečna mesečna bruto plača v Sloveniji glede na spol, leto in stopnjo izobrazbe
+
+```{r PlacaPoLetih}
+kable(head(PlacaPoLetih))
+```
+
+Tabela 6 prikazuje povprečno mesečno bruto plačo v Sloveniji glede na spol, leto in stopnjo izobrazbe. To tabelo bomo uporabili v 4. fazi. Podatki so uvoženi vobliki CSV. Podatke imamo za leta med 2008 do vključno 2013, izobrazbo pa kot že povsod v projektu ločimo na osnovno, srednjo in visoko.
+
 \newpage
 
 # Grafi
