@@ -72,7 +72,7 @@ Tabela 2 prikazuje podatke za izobrazbo moških v Nemčiji. Te podatke sem uvozi
 Izbrisati sem morala stolpce, ki jih nisem potrebovala, popraviti imena stolpcev, ter spremeniti imena iz angleščine v slovenščino.
 Tabela vsebuje 4 stolpce in to so leto, stopnja izobrazbe, starost in število oseb. 
 
-## Tabela 3: Izobraba žensk v Nemčiji
+## Tabela 3: Izobrazba žensk v Nemčiji
 
 ```{r IzobrazbaZN}
 kable(head(ZenskeNemcija))
@@ -196,10 +196,12 @@ Kljub temu, da so rezultati neodvisni od števila prebivalcev v določeni regiji
 
 # Napredna analiza
 
+```{r naprednaAnaliza, echo = FALSE, warning = FALSE, message = FALSE}
+source("analiza/analiza.r", encoding = "UTF-8")
+```
+
 V tem poglavju sem se odločila analizirati oziroma napovedati povprečno mesečno bruto plačo za naslednja leta, glede na podatke o plači iz prejšnjih let. Podatke imam za leta 2008, 2009, 2010, 2011, 2012 ter 2013. Ločeni so po spolu in stopnji izobrazbe.
 
 Odločila sem se napovedati spremembo bruto mesečne plače posebaj za moške in ženske z visoko izobrazbo.
 
-```{r naprednaAnaliza, echo = FALSE, warning = FALSE}
-source("analiza/analiza.r", encoding = "UTF-8")
-```
+
