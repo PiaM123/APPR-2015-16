@@ -27,7 +27,7 @@ ZemljevidIzobrazba <- ggplot() + geom_polygon(data = IzobrazbaRegije %>%
                             fill = Delež)) + ggtitle("Delež visoko izobraženih v posamezni regiji") + 
                       scale_fill_continuous(low = "#3f0000", high = "#ff0030")
                         + geom_text(data = ZemljevidIzobrazba@data %>% filter(IzobrazbaRegije == "D"), 
-                                    aes(x = Y_C, y = X_C, label = IzobrazbaRegije),
+                                    aes(x = long, y = lat, label = IzobrazbaRegije),
                                     size = 3, vjust = 2)
   
 
