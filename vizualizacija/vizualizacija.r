@@ -20,15 +20,21 @@ pretvori.zemljevid <- function(zemljevid) {
 
 slo <- pretvori.zemljevid(zemljevid)
 
-ZemlevidIzobrazba <- ggplot() + geom_polygon(data = IzobrazbaRegije %>%
+ZemljevidIzobrazba <- ggplot() + geom_polygon(data = IzobrazbaRegije %>%
                           filter(Izobrazba == "Visoka") %>%
                           right_join(slo, by = c("Regija" = "NAME_1")),
                         aes(x = long, y = lat, group = group,
                             fill = Delež)) + ggtitle("Delež visoko izobraženih v posamezni regiji") + 
                       scale_fill_continuous(low = "#3f0000", high = "#ff0030")
+                        + geom_text(data = ZemljevidIzobrazba@data %>% filter(IzobrazbaRegije == "D"), 
+                                    aes(x = Y_C, y = X_C, label = IzobrazbaRegije),
+                                    size = 3, vjust = 2)
   
 
 print(ZemlevidIzobrazba)
+
+#Dodamo imena regij
+
 
 
 
