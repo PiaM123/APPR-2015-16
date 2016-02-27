@@ -200,10 +200,6 @@ V tem poglavju sem se odločila analizirati oziroma napovedati povprečno meseč
 
 Odločila sem se napovedati spremembo bruto mesečne plače posebaj za moške in ženske z visoko izobrazbo.
 
-```{r grafŽV, echo=FALSE}
-ŽenskeVisoka <- PlacaPoLetih %>% filter(Spol == "Ženske") %>% 
-  filter(Izobrazba == "Visoka")
-grafŽV <- ggplot(ŽenskeVisoka, aes(x = Leto, y = Plača) ) + geom_point() + 
-  geom_smooth(method = "lm", fullrange = TRUE) + xlim(2008, 2016)
-print(grafŽV)
+```{r naprednaAnaliza, echo = FALSE, warning = FALSE}
+source("analiza/analiza.r", encoding = "UTF-8")
 ```
