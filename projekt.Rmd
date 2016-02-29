@@ -27,6 +27,8 @@ Za Slovenijo bom analizirala tudi povprečno mesečno plačo glede na stopnjo iz
 
 Zaradi risanja zemljevida pa bom v Sloveniji izobrazbo analizirala tudi po regijah.
 
+Na koncu bom poskusila napovedati kakšno bo gibanje povprečnih mesečnih plač v prihodnjih letih, glede na podatkih o plačah iz preteklih let. Seveda bodo tudi te napovedi ločene glede na stopnjo izobrazbe. 
+
 Podatke sem pridobila na spletu:
 
 * <http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=05G2010S&ti=&path=../Database/Dem_soc/05_prebivalstvo/20_soc_ekon_preb/01_05G20_izobrazba/&lang=2>
@@ -48,7 +50,7 @@ source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
 
 Uvozila sem podatke o izobrazbi žensk in moških v Sloveniji v obliki HTML in CSV iz spletne strani statističnega urada Slovenije, ter podatke o izobrazbi žensk in moških v Nemčiji v obliki CSV iz spletne strani OECD.
-Naknadno sem uvozila še podatke za delovno aktivnost in povprečno mesečno bruto plačo v Sloveniji, za izobrazbo po regijah, da bom lahko narisala zemljevid ter izobrazbo po letih (2008-2013), zaradi napredne analize.
+Naknadno sem uvozila še podatke za delovno aktivnost in povprečno mesečno bruto plačo v Sloveniji, ter za izobrazbo po regijah, da bom lahko narisala zemljevid in izobrazbo po letih (2008-2013), zaradi napredne analize.
 
 Razen zadnjih so vsi omenjeni podatki samo za leto 2013, ker za Nemčijo nisem dobila podatkov za katerokoli drugo leto in bi bila tako primerjava nemogoča.
 
@@ -160,7 +162,7 @@ Iz tega lahko vidimo, da Slovenci v povprečju nismo tako visoko izobraženi kot
 ```{r grafAktivnost, echo=FALSE}
 grafAktivnost <- ggplot(PlaceAktivnostSlovenija, aes(x=Stopnja.Izobrazbe, y=Število.Delovno.Aktivnih.Oseb/1000)) +
   geom_bar(width = .5, stat = "identity") + aes(fill=Stopnja.Izobrazbe) +
-  labs(title = "Stevilo delovno aktivnih oseb glede na stopnjo izobrazabe v 1000")
+  labs(title = "Število delovno aktivnih oseb glede na stopnjo izobrazabe v 1000")
 print(grafAktivnost)
 ```
 
@@ -199,6 +201,14 @@ Kljub temu, da so rezultati neodvisni od števila prebivalcev v določeni regiji
 V tem poglavju sem se odločila analizirati oziroma napovedati povprečno mesečno bruto plačo za naslednja leta, glede na podatke o plači iz prejšnjih let. Podatke imam za leta 2008, 2009, 2010, 2011, 2012 ter 2013. Ločeni so po spolu in stopnji izobrazbe.
 
 Naredila sem linearni model za oba spola skupaj z vsemi tremi izobrazbami, ter za vsak spol posebaj za visoko izobražene. Potem pa sem naredila še kvadratni model posebaj za moške in ženske z osnovnošolsko izobrazbo.
+
+1. model prikazuje povprečno mesečno bruto plačo za moške in ženske posebaj, ločene po stopnji izobrazbe - osnovna, srednja ter visoka. Vidimo, da imajo najvišjo plačo moški z visoko izobrazbo, ta je kar precej višja kot plača žensk z visoko izobrazbo. Prav tako je tudi pri srednji in osnovni izobrazbi - moški imajo višjo plači kot ženske.
+
+2. model prikazuje plačo žensk z visoko izobarazbo, ki kaže, da se je plača vse do leta 2011 povečevala in takrat začela padati. Enak vzorec vidimo tudi v 3. modelu, kjer je prikazana plača moških z visoko izobrazbo in tudi ta se povečuje do 2011 potem pa začne padati.
+
+4. in 5. model pa prikazujeta povprečno plačo za žeske in moške z osnovnošolsko izobrazbo, tu pa vidimo da plača ne začne padati ampak vseskozi narašča.
+
+
 
 
 ```{r naprednaAnaliza, echo = FALSE, warning = FALSE, message = FALSE}

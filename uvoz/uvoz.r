@@ -253,7 +253,7 @@ IzobrazbaRegije[34:36,4] <- IzobrazbaRegije[34:36,2]/ObalnoKraška
 # to tabelo uvozimo zaradi 4. faze
 
 uvozi.PlacaPoLetih<- function() {
-  return(read.table("podatki/PlacaPoLetih.csv", sep = ";", skip = 1, as.is = TRUE,
+  return(read.table("podatki/PlacaPoLetih.csv", sep = ";", skip = 0, as.is = TRUE,
                     row.names = NULL,
                     fileEncoding = "Windows-1250"))
 }

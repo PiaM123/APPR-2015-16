@@ -6,7 +6,7 @@ library(mgcv)
 
 VseSkupaj <- ggplot(PlacaPoLetih, aes(x = Leto, y = Plača, color = Izobrazba, shape = Spol)) +
   geom_point() + geom_smooth(method = "lm", fullrange = TRUE) + xlim(2008, 2016) +
-  labs("Linearni model za moške in ženske z vsemi tremi stopnjami izobrazbe")
+  labs(title = "Linearni model za moške in ženske z vsemi tremi stopnjami izobrazbe")
 print(VseSkupaj)
 
 # Ločimo po spolu in izobrazbi (Ženske visoka izobraza)
