@@ -205,5 +205,16 @@ Naredila sem linearni model za oba spola skupaj z vsemi tremi izobrazbami, ter z
 source("analiza/analiza.r", encoding = "UTF-8")
 ```
 
+\newpage
 
+## Tabela 7: Napoved za povprečno mesečno bruto plačo
+
+Naredila sem napoved za povprečno mesečno bruto plačo za leta od 2014 do 2020. Napoved sem ločila po spolu ter po izobrazbi. Sem se pa osredotočila le na osnovno in visoko izobrazbo, torej napoved vključuje moške z visoko in osnovno izobrazbo, ter ženske z visoko in osnovno izobrazbo.
+Vsi podatki so v €.
+
+```{r tabela}
+kable(head(tabela))
+```
+
+Iz te tabele vidimo, da naj bi se povprečna mesečna bruto plača za ženske z visoko in osnovno izobrazbo dvigovala, prav tako se bo dvigovala povprečna plača za moške z osnovno izobrazbo, za moške z visoko izobrazbo pa se bo plača zniževala.
 

@@ -58,8 +58,32 @@ grafMO1 <- grafMO + geom_line(data=as.data.frame(grafMO1), aes(x=x, y=y), color=
 
 print(grafMO1)
 
-#napoved za povprečno plačo
+#napoved za povprečno plačo žensk z visoko izobrazbo
 
-lin <- lm(data = PlacaPoLetih, Plača ~ Leto)
+lin <- lm(data = ŽenskeVisoka, Plača ~ Leto)
 lin
-print(predict(lin, data.frame(Leto = seq(2014, 2020, 1))))
+NŽV <- predict(lin, data.frame(Leto = seq(2014, 2020, 1)))
+
+# napoved za povprečno plačo moških z visoko izobrazbo
+
+lim <- lm(data = MoškiVisoka, Plača ~ Leto)
+lim
+NMV <- predict(lim, data.frame(Leto = seq(2014, 2020, 1)))
+
+#napoved za povprečno plačo žensk z osnovno izobrazbo
+lin1 <- lm(data = ŽenskeOsnovna, Plača ~ Leto)
+lin1
+NŽO <- predict(lin1, data.frame(Leto = seq(2014, 2020, 1)))
+
+#napoved za povprečno plačo moških z osnovno izobrazbo
+lim1 <- lm(data = MoškiOsnovna, Plača ~ Leto)
+lim1
+NMO <- predict(lim1, data.frame(Leto = seq(2014, 2020, 1)))
+
+#naredimo novo tabelo v katero damo te podatke
+
+tabela = data.frame(NŽV, NMV, NŽO, NMO)
+rownames(tabela) <- c("2014", "2015", "2016", "2017", "2018", "2019", "2020")
+colnames(tabela) <- c("Ženske visoka", "Moški visoka", "Ženske osnovna", "Moški osnovna")
+
+
