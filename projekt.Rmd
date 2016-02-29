@@ -189,19 +189,21 @@ source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 ```
 
 Za zemlevid sem uporabila podatke za izobrazbo v Sloveniji po regijah. Da sem dobila realen zemljevid sem se odločila prikazati delež visoko izobraženih glede na vse osebe v določeni občini, tako da velikost občine in število njenih prebivalcev ne vpliva na rezultat izobraženosti.
-Da sem to lahko storila, sem morala v tabelo 5 dodati nov stolpec, v katerem sem poračunala deleže.
+Da sem to lahko storila, sem morala v tabelo 5 dodati nov stolpec, v katerem sem poračunala deleže. Da bi bilo podatke lažje razumeti, sem dodala imena regij na zemljevid.
 Kljub temu, da so rezultati neodvisni od števila prebivalcev v določeni regiji, pa vidimo, da je najvišji delež visoko izobraženih ravno v osrednjeslovenski regiji.
 
 \newpage 
 
 # Napredna analiza
 
+V tem poglavju sem se odločila analizirati oziroma napovedati povprečno mesečno bruto plačo za naslednja leta, glede na podatke o plači iz prejšnjih let. Podatke imam za leta 2008, 2009, 2010, 2011, 2012 ter 2013. Ločeni so po spolu in stopnji izobrazbe.
+
+Naredila sem linearni model za oba spola skupaj z vsemi tremi izobrazbami, ter za vsak spol posebaj za visoko izobražene. Potem pa sem naredila še kvadratni model posebaj za moške in ženske z osnovnošolsko izobrazbo.
+
+
 ```{r naprednaAnaliza, echo = FALSE, warning = FALSE, message = FALSE}
 source("analiza/analiza.r", encoding = "UTF-8")
 ```
 
-V tem poglavju sem se odločila analizirati oziroma napovedati povprečno mesečno bruto plačo za naslednja leta, glede na podatke o plači iz prejšnjih let. Podatke imam za leta 2008, 2009, 2010, 2011, 2012 ter 2013. Ločeni so po spolu in stopnji izobrazbe.
-
-Odločila sem se napovedati spremembo bruto mesečne plače posebaj za moške in ženske z visoko izobrazbo.
 
 
