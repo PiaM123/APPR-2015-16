@@ -58,3 +58,9 @@ grafMO1 <- grafMO + geom_line(data=as.data.frame(grafMO1), aes(x=x, y=y), color=
 
 print(grafMO1)
 
+#napoved
+
+lin <- lm(data = PlacaPoLetih, Plača ~ Izobrazba)
+lin
+predict(lin, data.frame())
+

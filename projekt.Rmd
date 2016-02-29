@@ -184,7 +184,7 @@ To je seveda tudi prav, saj so morali tisti, ki imajo najvišjo izobrazbo vloži
 
 # Vizualizacija podatkov
 
-```{r vizualizacija, echo=FALSE, warning=FALSE}
+```{r vizualizacija, echo=FALSE, warning=FALSE, message=FALSE}
 source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 ```
 
