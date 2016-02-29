@@ -58,9 +58,8 @@ grafMO1 <- grafMO + geom_line(data=as.data.frame(grafMO1), aes(x=x, y=y), color=
 
 print(grafMO1)
 
-#napoved
+#napoved za povprečno plačo
 
-lin <- lm(data = PlacaPoLetih, Plača ~ Izobrazba)
+lin <- lm(data = PlacaPoLetih, Plača ~ Leto)
 lin
-predict(lin, data.frame())
-
+print(predict(lin, data.frame(Leto = seq(2014, 2020, 1))))
